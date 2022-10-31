@@ -1,11 +1,11 @@
 import os
 
-from vigilant.actions.assertions import Assertions
+from src.actions.assertions import Assertions
 from selenium.webdriver import Remote
-from vigilant.actions.finder import Finder
-from vigilant.actions.waiter import Waiter
+from src.actions.finder import Finder
+from src.actions.waiter import Waiter
 from selenium.webdriver.common.action_chains import ActionChains
-from vigilant.logger import logger as log
+from src.logger import logger as log
 
 
 def get_base_url():

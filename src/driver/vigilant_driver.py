@@ -1,14 +1,14 @@
 import os
-from vigilant.actions.vigilant_actions import VigilantActions
+from src.actions.vigilant_actions import VigilantActions
 from selenium import webdriver
-from vigilant.logger import logger as log
+from src.logger import logger as log
 
 
 class VigilantDriver:
     """
     This class provide methods for running WebDriver client from scratch using configuration
-    provided inside .vigilant.env file.
-    Environment variables as configuration artifacts that should be inside .vigilant.env file
+    provided inside .src.env file.
+    Environment variables as configuration artifacts that should be inside .src.env file
     SELENIUM_HOST - is used as command_executor, it is Selenium Server URI;
     SELENIUM_BROWSER - used as entity that show which browser options to use FirefoxOptions(),
         ChromeOptions, etc. (DesiredCapabilities is now deprecated, we should use Options() class).
@@ -21,7 +21,7 @@ class VigilantDriver:
     def __init__(self):
         """
         In this constructor we initialize two attributes:
-        `driver` - native webdriver client, created from .vigilant.env configuration file;
+        `driver` - native webdriver client, created from .src.env configuration file;
         `act` - instance of VigilantActions class, which is wrapper on native WebDriver methods to interact
         with browser.
         """
@@ -33,7 +33,7 @@ class VigilantDriver:
 
     def default_browser_options(self):
         """
-        Set browser options according to browser name provided in .vigilant.env file.
+        Set browser options according to browser name provided in .src.env file.
         It can be overwritten when user create new Selenium session by providing options as argument.
         :return:
         """
