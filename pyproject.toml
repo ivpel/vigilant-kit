@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "vigilant_kit"
+version = "0.0.1"
+authors = [
+  { name="Pelykh Ivan", email="ivan.pelykh@protonmail.com" },
+]
+description = "Library that makes functional testing with Selenium WebDriver fast and easy. "
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/ivpel/vigilant"
+"Bug Tracker" = "https://github.com/ivpel/vigilant/issues"
