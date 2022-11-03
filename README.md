@@ -1,8 +1,5 @@
 # Vigilant Kit
-
 Vigilant is a set of tools made to help writing and running robust functional tests using Selenium WebDriver. 
-
-
 
 ## Why Vigilant?
  - It allows you to start writing complex test cases in a minute.
@@ -40,17 +37,26 @@ pip install vigilant-kit
 ### Configuration
 Configuration can be done through environment variables. Create `.vigilant.env` file with next data:
 ```shell
-SELENIUM_HOST=http://127.0.0.1:4444/wd/hub # Selenium host URL
-SELENIUM_BROWSER=firefox # Browser which will performing the tests
-BASE_URL=http://www.python.org # The root URL of the application under test.
-WAIT_TIMEOUT=10 # Amount of time (in seconds) that a test will wait while loading a page or waiting for element
-LOGGER_LEVEL=INFO # Log level
+# Selenium host URL
+SELENIUM_HOST=http://127.0.0.1:4444/wd/hub 
+
+# Browser which will performing the tests
+SELENIUM_BROWSER=firefox 
+
+# The root URL of the application under test.
+BASE_URL=http://www.python.org 
+
+# Amount of time (in seconds) that a test will wait while loading a page or waiting for element
+WAIT_TIMEOUT=10 
+
+# Log level
+LOGGER_LEVEL=INFO 
 ```
 
 ### Test
 Create file `first_test.py` with same code as below. We will cover 3 simple cases for demo purposes.
-```shell
-from src.vigilant.driver.vigilant_driver import VigilantDriver
+```python
+from vigilant.driver.vigilant_driver import VigilantDriver
 
 
 def first_test():
@@ -58,7 +64,7 @@ def first_test():
 
     # Case 1. Go to some page and assert page title
     driver.vigilant.get_page('/') # Go to root page
-    driver.vigilant.assertions.see_in_title('Python' # Assert that page title contains 'Python' string
+    driver.vigilant.assertions.see_in_title('Python') # Assert that page title contains 'Python' string
     
     # Case 2. Scroll to some block and assert visible text
     driver.vigilant.scroll_to('//h2[text()="Success Stories"]') # Scroll to Success Stories block
