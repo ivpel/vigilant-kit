@@ -1,5 +1,5 @@
-from selenium.webdriver.common.by import By
 from selenium.webdriver import Remote
+from selenium.webdriver.common.by import By
 
 
 class Finder:

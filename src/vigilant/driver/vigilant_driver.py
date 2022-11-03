@@ -1,7 +1,9 @@
 import os
-from src.vigilant.actions.vigilant_actions import VigilantActions
+
 from selenium import webdriver
-from src.vigilant.logger import logger as log
+
+from vigilant.actions.vigilant_actions import VigilantActions
+from vigilant.logger import logger as log
 
 
 class VigilantDriver:

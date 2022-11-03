@@ -1,6 +1,5 @@
-import os
 import logging
-
+import os
 
 logging.basicConfig(format='[%(asctime)s: %(levelname)s] %(message)s')
 

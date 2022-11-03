@@ -1,8 +1,9 @@
-from selenium.webdriver import Remote
-from src.vigilant.actions.finder import Finder
-from src.vigilant.actions.waiter import Waiter
-from src.vigilant.logger import logger as log
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver import Remote
+
+from vigilant.actions.finder import Finder
+from vigilant.actions.waiter import Waiter
+from vigilant.logger import logger as log
 
 
 class Assertions:

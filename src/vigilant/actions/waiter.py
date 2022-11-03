@@ -2,10 +2,11 @@ import os
 import time
 
 from selenium.webdriver import Remote
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from src.vigilant.actions.finder import Finder
-from src.vigilant.logger import logger as log
+from selenium.webdriver.support.ui import WebDriverWait
+
+from vigilant.actions.finder import Finder
+from vigilant.logger import logger as log
 
 
 def get_timeout():
