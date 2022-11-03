@@ -6,9 +6,10 @@ from src.vigilant.logger import logger as log
 
 class VigilantDriver:
     """
-    This class provide methods for running WebDriver client from scratch using configuration
-    provided inside .src.env file.
-    Environment variables as configuration artifacts that should be inside .src.env file
+    VigilantDriver class provide methods for running WebDriver client from scratch using configuration
+    from .vigilant.env file.
+
+    Environment variables are configuration items that should be inside .vigilant.env file:
     SELENIUM_HOST - is used as command_executor, it is Selenium Server URI;
     SELENIUM_BROWSER - used as entity that show which browser options to use FirefoxOptions(),
         ChromeOptions, etc. (DesiredCapabilities is now deprecated, we should use Options() class).
@@ -21,11 +22,11 @@ class VigilantDriver:
     def __init__(self):
         """
         In this constructor we initialize two attributes:
-        `driver` - native webdriver client, created from .src.env configuration file;
-        `act` - instance of VigilantActions class, which is wrapper on native WebDriver methods to interact
+        `driver` - native webdriver client, created from .vigilant.env configuration file;
+        `vigilant` - instance of VigilantActions class, which is wrapper on native WebDriver methods to interact
         with browser.
         """
-        self.driver = self.create_remote_session()
+        self.driver = self.create_remote_driver_session()
         self.vigilant = VigilantActions(self.driver)
 
     SELENIUM_HOST = os.environ.get("SELENIUM_HOST")
@@ -33,9 +34,11 @@ class VigilantDriver:
 
     def default_browser_options(self):
         """
-        Set browser options according to browser name provided in .src.env file.
+        Set browser options according to browser name provided in .vigilant.env file.
         It can be overwritten when user create new Selenium session by providing options as argument.
-        :return:
+
+        Returns:
+            Options: return default browser options according to value from SELENIUM_BROWSER variable.
         """
         options = None
         if self.SELENIUM_BROWSER.lower() == "firefox":
@@ -45,7 +48,16 @@ class VigilantDriver:
         log.info(f"Setting default browser options: {self.SELENIUM_BROWSER}")
         return options
 
-    def create_remote_session(self, browser_options=None):
+    def create_remote_driver_session(self, browser_options=None):
+        """
+        Create a new driver that will issue commands using the wire protocol.
+
+         Args:
+            browser_options: browser options instance is required as it determines which browser will be used
+
+        Returns:
+            Remote: remote driver session based on configuration from .vigilant.env file
+        """
         log.info("Creating remote session.\n"
                  f"Command executor: {self.SELENIUM_HOST}\n"
                  f"Browser: {self.SELENIUM_BROWSER}")

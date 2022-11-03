@@ -14,10 +14,11 @@ def get_base_url():
 
 class VigilantActions:
     """
-    `VigilantActions` - provide methods for interaction with browser. In fact this is wrapper on native webdriver
+    `VigilantActions` - provide methods for interaction with browser. This is wrapper on native webdriver
     methods for working with browser in more comfortable way, with smart waiters, finders and assertions.
-    `waiter` - provide smart wait methods.
-    `finder` - provide comfortable search elements methods.
+    `waiter` - smart wait methods.
+    `finder` - methods for comfortable elements search.
+    `assertions` - assertion methods for browser.
     """
 
     def __init__(self, driver):
@@ -27,6 +28,12 @@ class VigilantActions:
         self.waiter: Waiter = Waiter(self.driver, self.finder)
 
     def get_page(self, url):
+        """
+        Opens the page by the URL relative to the one set in the BASE_URL configuration variable.
+        Args:
+            url: A path to the page relative to the BASE_URL
+        :return:
+        """
         log.info(f'Getting page: {url}')
         self.driver.get(get_base_url() + url)
         return self
