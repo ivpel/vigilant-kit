@@ -15,7 +15,7 @@ def get_base_url():
 
 class VigilantActions:
     """
-    `VigilantActions` - provide methods for interaction with browser. This is wrapper on native webdriver
+    `VigilantActions` - provide methods for interaction with browser. This is wrapper on native Selenium WebDriver
     methods for working with browser in more comfortable way, with smart waiters, finders and assertions.
     `waiter` - smart wait methods.
     `finder` - methods for comfortable elements search.
