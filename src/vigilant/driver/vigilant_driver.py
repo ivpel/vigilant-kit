@@ -6,30 +6,46 @@ from vigilant.actions.vigilant_actions import VigilantActions
 from vigilant.logger import logger as log
 
 
-class VigilantDriver:
+class VigilantDriver(VigilantActions):
     """
-    VigilantDriver class provide methods for running WebDriver client from scratch using configuration
-    from .vigilant.env file.
+    VigilantDriver class provide methods for running WebDriver instance from scratch using configuration
+    from .vigilant.env file
 
-    Environment variables are configuration items that should be inside .vigilant.env file:
+    .vigilant.env configuration items:
+    ----------------------------------
     SELENIUM_HOST - is used as command_executor, it is Selenium Server URI;
+
     SELENIUM_BROWSER - used as entity that show which browser options to use FirefoxOptions(),
         ChromeOptions, etc. (DesiredCapabilities is now deprecated, we should use Options() class).
+
     BASE_URL - the root URL of the application under test
+
     WAIT_TIMEOUT - configuration for the default amount of time (in seconds) that a
-    test will wait while trying to interact with web element.
+        test will wait while trying to interact with web element.
+
     LOGGER_LEVEL - level of verbosity that will be printed in to the console;
     """
 
-    def __init__(self):
+    def __init__(self, browser_options=None):
         """
-        In this constructor we initialize two attributes:
-        `driver` - native webdriver client, created from .vigilant.env configuration file;
-        `vigilant` - instance of VigilantActions class, which is wrapper on native WebDriver methods to interact
-        with browser.
+        `driver` - if you want access native Selenium WebDriver methods;
+        VigilantActions - allow you to use custom methods for interaction with browser directly from VigilantDriver
+        class instance;
+
+        Examples:
+            How to use VigilantActions methods;
+
+                act = VigilantDriver()
+                act.get_page('/')
+                act.assertions.see_text('Some Text')
+
+            How to access native Selenium WebDriver methods;
+
+                act = VigilantDriver()
+                act.driver.get('https://python.org') // Here we use Selenium WebDriver get() method
         """
-        self.driver = self.create_remote_driver_session()
-        self.vigilant = VigilantActions(self.driver)
+        self.driver = self.create_remote_driver_session(browser_options)
+        VigilantActions.__init__(self, self.driver)
 
     SELENIUM_HOST = os.environ.get("SELENIUM_HOST")
     SELENIUM_BROWSER = os.environ.get("SELENIUM_BROWSER")
@@ -52,7 +68,7 @@ class VigilantDriver:
 
     def create_remote_driver_session(self, browser_options=None):
         """
-        Create a new driver that will issue commands using the wire protocol.
+        Create a new WebDriver instance that will issue commands using the wire protocol.
 
          Args:
             browser_options: browser options instance is required as it determines which browser will be used
