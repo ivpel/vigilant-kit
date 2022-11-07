@@ -14,8 +14,8 @@ waiters, finders and assertions. Methods for interacting with WebBrowser (`click
 
 What if you need something that is not covered in this library?
 
-You still have access to all `WebDriver` methods. Despite all functional that library provide - you can create your own 
-methods or use native `WebDriver` methods.
+You still have access to all native `Selenium WebDriver` methods. Despite all functional that library provide - 
+you can create your own methods or use native `WebDriver` methods.
 
 Check documentation to find more.
 
@@ -60,23 +60,24 @@ from vigilant.driver.vigilant_driver import VigilantDriver
 
 
 def first_test():
-    driver = VigilantDriver() # Creating Browser session
+    act = VigilantDriver()
 
     # Case 1. Go to some page and assert page title
-    driver.vigilant.get_page('/') # Go to root page
-    driver.vigilant.assertions.see_in_title('Python') # Assert that page title contains 'Python' string
-    
+    act.get_page('/')  # Go to root page
+    act.assertions.see_in_title('Python')  # Assert that page title contains 'Python' string
+
     # Case 2. Scroll to some block and assert visible text
-    driver.vigilant.scroll_to('//h2[text()="Success Stories"]') # Scroll to Success Stories block
-    driver.vigilant.assertions.see_text('Success Stories') # Assert that Success Stories string is visible 
+    act.scroll_to('//h2[text()="Success Stories"]')  # Scroll to Success Stories block
+    act.assertions.see_text('Success Stories')  # Assert that Success Stories string is visible
 
     # Case 3. Fill in Search field with search key word, assert result in search result page.
-    driver.vigilant.fill_field('//input[@name="q"]', 'python') # Fill search field
-    driver.vigilant.click('//button[@id="submit"]') # Click Search button
-    driver.vigilant.assertions.see_in_url('/search/?q=python') # See in URL that we are redirected to search result page
-    driver.vigilant.assertions.see_text('Results') # Assert visible Results text
+    act.fill_field('//input[@name="q"]', 'python')  # Fill search field
+    act.click('//button[@id="submit"]')  # Click Search button
+    act.assertions.see_in_url(
+        '/search/?q=python')  # See in URL that we are redirected to search result page
+    act.assertions.see_text('Results')  # Assert visible Results text
 
-    driver.vigilant.quit() # Quit browser session
+    act.quit()  # Quit browser session
 
 
 if __name__ == '__main__':
