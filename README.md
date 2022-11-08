@@ -1,34 +1,37 @@
 # Vigilant Kit
 Vigilant is a set of tools made to help writing and running robust functional tests using Selenium WebDriver. 
 
+### [Documentation](docs/index.md)
+
 ## Why Vigilant?
  - It allows you to start writing complex test cases in a minute.
  - Simple configuration process (just one `.vigilant.env` file to start)
  - Usage is not limited to a single testing framework, it can be used with `unittest`, `pytest` or anything else.
 It is up to you.
 
-## Flexibility 
-**Vigilant** provide you with methods that help write functional tests fast, without spending your time on writing smart
-waiters, finders and assertions. Methods for interacting with WebBrowser (`click`, `scroll_to`, etc.), assertions 
-(`see`, `dont_see`, `see_text`, etc.) It is already there, ready to use.
+**Vigilant** provide you with methods that help write functional tests fast, without spending your time on writing
+boilerplate code every time you start new project.
 
-What if you need something that is not covered in this library?
+Methods for **interacting** with WebBrowser (`click`, `scroll_to`,  etc.), **assertions** (`see`, `dont_see`, `see_text`
+, etc.) **waiting** (`wait_for_element_to_be_visible`, `wait_for_element_to_be_clickable`, etc.)
+It is already there, ready to use.
+
+List of all available [actions](docs/actions.md).
+
+### What if you need something that is not covered in this library?
 
 You still have access to all native `Selenium WebDriver` methods. Despite all functional that library provide - 
-you can create your own methods or use native `WebDriver` methods.
-
-Check documentation to find more.
+you can create your own methods or use native `WebDriver` methods and share them on one browser session.
 
 ## Docs & Tutorials
-If you are interested how to use **Vigilant Kit** with such framework as `unittest` or `pytest` with complex cases, POM 
-pattern, etc. - visit documentation part.
+Visit [Documentation](docs/index.md) if you are interested how to use **Vigilant Kit** with such framework as `unittest` or `pytest` with complex cases, POM 
+pattern, etc.
 
 If you just want to see what is **Vigilant Kit** and what it can do - **Quick start** is good place to start.
 
 ## Quick start
 We will write our first test without any classic test frameworks, it will be simple python script, but it enough
-to show how easy it can be to start. If you want to start with `unittest` or `pytest` check our documentation with
-tutorials and examples.
+to show how easy it can be to start.
 ### Install
 ```shell
 pip install vigilant-kit
