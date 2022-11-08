@@ -1,7 +1,7 @@
 # Vigilant Kit
 Vigilant is a set of tools made to help writing and running robust functional tests using Selenium WebDriver. 
 
-### [Documentation](docs/index.md)
+
 
 ## Why Vigilant?
  - It allows you to start writing complex test cases in a minute.
@@ -24,21 +24,25 @@ You still have access to all native `Selenium WebDriver` methods. Despite all fu
 you can create your own methods or use native `WebDriver` methods and share them on one browser session.
 
 ## Docs & Tutorials
-Visit [Documentation](docs/index.md) if you are interested how to use **Vigilant Kit** with such framework as `unittest` or `pytest` with complex cases, POM 
-pattern, etc.
-
-If you just want to see what is **Vigilant Kit** and what it can do - **Quick start** is good place to start.
+### [Documentation](docs/index.md)
+ - [How to install Selenium server & browser drivers](docs/selenium_install.md)
+ - [How to start testing with `unittest` library](docs/vigilant_unittest.md) 
+ - [How to add custom browser options](docs/browser_options.md)
+ - [Access native Selenium WebDriver methods](docs/native_selenium.md)
+ - [List of actions](docs/actions.md).
 
 ## Quick start
-We will write our first test without any classic test frameworks, it will be simple python script, but it enough
-to show how easy it can be to start.
+We will write our first test with `unittest` library.
 ### Install
 ```shell
 pip install vigilant-kit
 ```
 
 ### Configuration
-Configuration can be done through environment variables. Create `.vigilant.env` file with next data:
+Configuration can be done through environment variables. Make sure that your Selenium Server is up and running, if not -
+[**Install Selenium server**](docs/selenium_install.md)
+
+Create `.vigilant.env` file with next data:
 ```shell
 # Selenium host URL
 SELENIUM_HOST=http://127.0.0.1:4444/wd/hub 
@@ -57,42 +61,56 @@ LOGGER_LEVEL=INFO
 ```
 
 ### Test
-Create file `first_test.py` with same code as below. We will cover 3 simple cases for demo purposes.
+Create file `test_first.py` with same code as below. We will cover 3 simple cases for demo purposes.
 ```python
+import unittest
+
 from vigilant.driver.vigilant_driver import VigilantDriver
+from selenium.webdriver.firefox.options import Options
 
 
-def first_test():
-    act = VigilantDriver()
+class TestHomePage(unittest.TestCase):
 
-    # Case 1. Go to some page and assert page title
-    act.get_page('/')  # Go to root page
-    act.assertions.see_in_title('Python')  # Assert that page title contains 'Python' string
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.act = VigilantDriver()
 
-    # Case 2. Scroll to some block and assert visible text
-    act.scroll_to('//h2[text()="Success Stories"]')  # Scroll to Success Stories block
-    act.assertions.see_text('Success Stories')  # Assert that Success Stories string is visible
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls.act.quit()
 
-    # Case 3. Fill in Search field with search key word, assert result in search result page.
-    act.fill_field('//input[@name="q"]', 'python')  # Fill search field
-    act.click('//button[@id="submit"]')  # Click Search button
-    act.assertions.see_in_url(
-        '/search/?q=python')  # See in URL that we are redirected to search result page
-    act.assertions.see_text('Results')  # Assert visible Results text
+    def test_home_page(self):
+        # Case 1. Go to some page and assert page title
+        self.act.get_page('/')  # Go to root page
+        self.act.assertions.see_in_title('Python')  # Assert that page title contains 'Python' string
 
-    act.quit()  # Quit browser session
+    def test_text_block(self):
+        # Case 2. Scroll to some block and assert visible text
+        self.act.get_page('/')  # Go to root page
+        self.act.scroll_to('//h2[text()="Success Stories"]')  # Scroll to Success Stories block
+        self.act.assertions.see_text('Success Stories')  # Assert that Success Stories string is visible
+
+    def test_search_page(self):
+        # Case 3. Fill in Search field with search key word, assert result in search result page.
+        self.act.get_page('/')  # Go to root page
+        self.act.fill_field('//input[@name="q"]', 'python')  # Fill search field
+        self.act.click('//button[@id="submit"]')  # Click Search button
+        self.act.assertions.see_in_url(
+            '/search/?q=python')  # See in URL that we are redirected to search result page
+        self.act.assertions.see_text('Results')  # Assert visible Results text
 
 
 if __name__ == '__main__':
-    first_test()
+    unittest.main()
+
 
 ```
 Now run our script:
 ```shell
-python3 first_test.py
+python3 test_first.py
 ```
 ### Results
-If you are running your selenium server locally - you can see how script interact with browser in real time. But in any
+If you are running your Selenium Server locally - you can see how script interact with browser in real time. But in any
 case you should have terminal output similar to this, due to LOGGER_LEVEL=INFO:
 ```shell
 [2022-11-02 16:34:26,452: INFO] Creating remote session.
