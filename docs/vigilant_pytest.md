@@ -1,4 +1,4 @@
-# How to start testing with `unittest` library
+# How to start testing with `pytest`
 [Go back](index.md)
 
 If you are not familiar with `pytest` - there is good place to start:
