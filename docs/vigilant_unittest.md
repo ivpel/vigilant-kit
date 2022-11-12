@@ -1,5 +1,4 @@
 # How to start testing with `unittest` library
-[Go back](index.md)
 
 If you are not already familiar with the basic concepts of testing, you might want to read this tutorial:
 [unittest](https://docs.python.org/3/library/unittest.html)

@@ -1,5 +1,4 @@
 # How to use native Selenium methods
-[Go back](index.md)
 
 How to use native webdriver methods from `VigilantDriver()` instance?
 

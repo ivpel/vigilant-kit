@@ -1,5 +1,4 @@
 # How to install Selenium Server & browser drivers
-[Go back](index.md)
 
 ***
 ## Option 1: Run Selenium server + browser driver locally

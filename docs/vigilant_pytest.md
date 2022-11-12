@@ -1,5 +1,4 @@
 # How to start testing with `pytest`
-[Go back](index.md)
 
 If you are not familiar with `pytest` - there is good place to start:
 [Effective Python Testing With Pytest](https://realpython.com/pytest-python-testing/)

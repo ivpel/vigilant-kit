@@ -1,5 +1,4 @@
 # How to add custom browser options
-[Go back](index.md)
 
 Let's use example from Quick Start section.
 Adding custom browser options can be done in 3 steps:

@@ -1,6 +1,5 @@
 # Vigilant Kit
 Vigilant is a set of tools made to help writing and running robust functional tests using Selenium WebDriver.
-### [Documentation](docs/index.md)
 
 ## Why Vigilant?
  - It allows you to start writing complex test cases in a minute.
