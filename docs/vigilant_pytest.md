@@ -47,7 +47,7 @@ def test_search_page(act):
 
 How to use fixture similar to `setUpClass` from `unittest`?
 Use `scope` argument for fixture:
-```python
+```text
     :param scope:
         The scope for which this fixture is shared; one of ``"function"``
         (default), ``"class"``, ``"module"``, ``"package"`` or ``"session"``.

@@ -110,7 +110,7 @@ python3 test_first.py
 ### Results
 If you are running your Selenium Server locally - you can see how script interact with browser in real time. But in any
 case you should have terminal output similar to this, due to LOGGER_LEVEL=INFO:
-```shell
+```text
 [2022-11-02 16:34:26,452: INFO] Creating remote session.
 Command executor: http://127.0.0.1:4444/wd/hub
 Browser: firefox
