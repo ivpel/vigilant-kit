@@ -7,6 +7,7 @@ This is a simplified example, but it is enough to understand how it works and be
 Good luck!
 
 Source code: [vigilant-kit and pytest](https://github.com/ivpel/vigilant-pytest)
+
 Pytest docs: [pytest](https://docs.pytest.org/en/latest/getting-started.html)
 
 ## Table of content:
