@@ -31,13 +31,16 @@ you can create your own methods or use native `WebDriver` methods and share them
 
 ## Tutorials
  - [Testing ecommerce project using `vigilant-kit` and `pytest`](docs/tutorial_pytest.md)
-
-## Quick start
-We will write our first test with `unittest` library.
-### Install
+ 
+## Install
 ```shell
 pip install vigilant-kit
 ```
+
+## Quick start
+We will write our first test with `unittest` library. Also make sure that you installed
+`vigilant-kit` library.
+
 
 ### Configuration
 Configuration can be done through environment variables. Make sure that your Selenium Server is up and running, if not -

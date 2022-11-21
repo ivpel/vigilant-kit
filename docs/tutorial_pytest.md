@@ -20,6 +20,10 @@ To install `vigilant-kit` in your project, run this command:
 ```shell
 pip install vigilant-kit
 ```
+Then we need to install `pytest`:
+```shell
+pip install pytest
+```
 How to install and run Selenium Server described here [Install Selenium Server](https://github.com/ivpel/vigilant-kit/blob/main/docs/selenium_install.md)
 
 ## POM pattern
