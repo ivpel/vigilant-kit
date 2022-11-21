@@ -21,13 +21,16 @@ List of all available [actions](docs/actions.md).
 You still have access to all native `Selenium WebDriver` methods. Despite all functional that library provide - 
 you can create your own methods or use native `WebDriver` methods and share them on one browser session.
 
-## Docs & Tutorials
+## Docs
  - [How to install Selenium server & browser drivers](docs/selenium_install.md)
  - [How to start testing with `unittest` library](docs/vigilant_unittest.md) 
  - [How to start testing with `pytest`](docs/vigilant_pytest.md) 
  - [How to add custom browser options](docs/browser_options.md)
  - [Access native Selenium WebDriver methods](docs/native_selenium.md)
  - [List of actions](docs/actions.md).
+
+## Tutorials
+ - [Testing ecommerce project using `vigilant-kit` and `pytest`](docs/tutorial_pytest.md)
 
 ## Quick start
 We will write our first test with `unittest` library.
