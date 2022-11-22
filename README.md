@@ -23,8 +23,8 @@ you can create your own methods or use native `WebDriver` methods and share them
 
 ## Docs
  - [How to install Selenium server & browser drivers](docs/selenium_install.md)
- - [How to start testing with `unittest` library](docs/vigilant_unittest.md) 
- - [How to start testing with `pytest`](docs/vigilant_pytest.md) 
+ - [Quick start example using `unittest` library](docs/vigilant_unittest.md) 
+ - [Quick start example using `pytest`](docs/vigilant_pytest.md) 
  - [How to add custom browser options](docs/browser_options.md)
  - [Access native Selenium WebDriver methods](docs/native_selenium.md)
  - [List of actions](docs/actions.md).
