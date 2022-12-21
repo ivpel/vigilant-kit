@@ -171,6 +171,14 @@ class VigilantActions:
         self.finder.find(selector).send_keys(value)
         return self
 
+    def fill_form(self, selector_data):
+        if type(selector_data) is dict:
+            for selector, data in selector_data.items():
+                self.waiter.wait_for_element_to_be_visible(selector)
+                log.info(f'Filling field: {selector} with value: {data}')
+                self.finder.find(selector).send_keys(data)
+        return self
+
     def move_mouse_on_element(self, selector):
         self.waiter.wait_for_element_to_be_visible(selector)
         element = self.finder.find(selector)
