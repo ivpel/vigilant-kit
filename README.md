@@ -70,7 +70,6 @@ Create file `test_first.py` with same code as below. We will cover 3 simple case
 import unittest
 
 from vigilant.driver.vigilant_driver import VigilantDriver
-from selenium.webdriver.firefox.options import Options
 
 
 class TestHomePage(unittest.TestCase):
@@ -106,7 +105,6 @@ class TestHomePage(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
 
 ```
 Now run our script:
