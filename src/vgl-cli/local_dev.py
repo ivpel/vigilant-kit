@@ -10,16 +10,16 @@ def install_selenium():
         click.echo("Creating directory for Selenium server...", nl=False)
         os.mkdir('selenium')
         os.chdir('selenium')
-        click.echo(click.style("OK", fg='green'))
+        click.secho("OK", fg='green')
 
         # Download Selenium jar file
         click.echo("Downloading Selenium jar file...", nl=False)
         download_file('https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.7.0/selenium-server-4.7.2.jar')
-        click.echo(click.style("OK", fg='green'))
+        click.secho("OK", fg='green')
 
     except FileExistsError:
-        click.echo(click.style("Error", fg='red'))
-        click.echo(click.style("Directory 'selenium' already exist!", fg='red'))
+        click.secho("Error", fg='red')
+        click.secho("Directory 'selenium' already exist!", fg='red')
         sys.exit(1)
 
 
@@ -35,9 +35,9 @@ def install_webdriver(browser):
             file = tarfile.open('geckodriver-v0.32.0-linux64.tar.gz')
             file.extractall('.')
 
-        click.echo(click.style("OK", fg='green'))
+        click.secho("OK", fg='green')
     except FileNotFoundError as e:
-        click.echo(click.style("Error", fg='red'))
+        click.secho("Error", fg='red')
         click.echo(e)
 
 
@@ -46,3 +46,6 @@ def install_webdriver(browser):
 def install_selenium_dev_server(browser):
     install_selenium()
     install_webdriver(browser)
+    click.secho("Installation complete.", fg='green')
+    click.secho(f"INFO: Before running your Selenium Server locally, make sure that your {browser} browser is updated "
+                f"to the last stable version!")
