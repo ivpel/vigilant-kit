@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "vigilant_kit"
-version = "1.0.0"
+version = "1.1.0"
 authors = [
   { name="Pelykh Ivan", email="ivan.pelykh@protonmail.com" },
 ]
@@ -14,12 +14,13 @@ requires-python = ">=3.7"
 dependencies = [
   "selenium",
   "python-dotenv",
+  "click",
 ]
 
 keywords = ["testing", "selenium", "webdriver", "pytest", "unittest", "bdd", "tdd", "functional", "functional-testing"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/vigilant"]
+packages = ["src/vigilant", "src/vgl_cli"]
 
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -30,3 +31,6 @@ classifiers = [
 [project.urls]
 "Homepage" = "https://github.com/ivpel/vigilant"
 "Bug Tracker" = "https://github.com/ivpel/vigilant/issues"
+
+[project.scripts]
+vgl = "vgl_cli.vgl:vgl"
