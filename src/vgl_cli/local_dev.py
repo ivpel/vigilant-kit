@@ -2,7 +2,7 @@ import os
 import sys
 import tarfile
 import click
-from utils import download_file
+from .utils import download_file
 
 
 def install_selenium():
