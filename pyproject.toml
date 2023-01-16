@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "vigilant_kit"
-version = "1.1.0"
+version = "1.1.1"
 authors = [
   { name="Pelykh Ivan", email="ivan.pelykh@protonmail.com" },
 ]
@@ -15,6 +15,7 @@ dependencies = [
   "selenium",
   "python-dotenv",
   "click",
+  "requests"
 ]
 
 keywords = ["testing", "selenium", "webdriver", "pytest", "unittest", "bdd", "tdd", "functional", "functional-testing"]
