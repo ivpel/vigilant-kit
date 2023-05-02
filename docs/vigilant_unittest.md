@@ -1,14 +1,36 @@
-# How to start testing with `unittest` library
+## Quick start
+We will write our first test with `unittest` library. Also make sure that you installed
+`vigilant-kit` library.
 
-If you are not already familiar with the basic concepts of testing, you might want to read this tutorial:
-[unittest](https://docs.python.org/3/library/unittest.html)
 
-Example using `unittest` library.
+### Configuration
+Configuration can be done through environment variables. Make sure that your Selenium Server is up and running, if not -
+[**Install Selenium server**](selenium_install.md)
+
+Create `.vigilant.env` file with next data:
+```shell
+# Selenium host URL
+SELENIUM_HOST=http://127.0.0.1:4444/wd/hub 
+
+# Browser which will performing the tests
+SELENIUM_BROWSER=firefox 
+
+# The root URL of the application under test.
+BASE_URL=http://www.python.org 
+
+# Amount of time (in seconds) that a test will wait while loading a page or waiting for element
+WAIT_TIMEOUT=10 
+
+# Log level
+LOGGER_LEVEL=INFO 
+```
+
+### Test
+Create file `test_first.py` with same code as below. We will cover 3 simple cases for demo purposes.
 ```python
 import unittest
 
 from vigilant.driver.vigilant_driver import VigilantDriver
-from selenium.webdriver.firefox.options import Options
 
 
 class TestHomePage(unittest.TestCase):
@@ -46,4 +68,28 @@ if __name__ == '__main__':
     unittest.main()
 
 ```
+Now run our script:
+```shell
+python3 test_first.py
+```
+### Results
+If you are running your Selenium Server locally - you can see how script interact with browser in real time. But in any
+case you should have terminal output similar to this, due to LOGGER_LEVEL=INFO:
+```text
+[2022-11-02 16:34:26,452: INFO] Creating remote session.
+Command executor: http://127.0.0.1:4444/wd/hub
+Browser: firefox
+[2022-11-02 16:34:26,452: INFO] Setting default browser options: firefox
+[2022-11-02 16:34:27,890: INFO] Getting page: /
+[2022-11-02 16:34:33,942: INFO] Assert: see string Python in current page title
+[2022-11-02 16:34:33,956: INFO] Scrolling to element: //h2[text()="Success Stories"]
+[2022-11-02 16:34:33,956: INFO] Execute JS script: arguments[0].scrollIntoView({block: "center"}) with arguments: <selenium.webdriver.remote.webelement.WebElement (session="3c63a627-1ffd-40ed-b008-78e671d82085", element="703e049a-3ab4-4bd5-814a-bb38dd64864a")>
+[2022-11-02 16:34:33,980: INFO] Waiting for element with selector: //input[@name="q"] - to be visible.
+[2022-11-02 16:34:33,991: INFO] Filling field: //input[@name="q"] with value: python
+[2022-11-02 16:34:34,012: INFO] Waiting for element with selector: //button[@id="submit"] - to be visible.
+[2022-11-02 16:34:34,026: INFO] Clicking on element: //button[@id="submit"]
+[2022-11-02 16:34:34,411: INFO] Assert: see string /search/?q=python in current page URL
+[2022-11-02 16:34:34,434: INFO] Quits the driver and closes every associated window
 
+```
+Congrats! You successfully created your first testing script using Vigilant Kit :)
