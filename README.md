@@ -18,6 +18,8 @@ It is already there, ready to use.
 
 Also, a bunch of CLI scripts, to make your life easier!
 
+Use `vgl --help` to see all available commands.
+
 List of all available [actions](docs/actions.md).
 
 ## Extending Functionality

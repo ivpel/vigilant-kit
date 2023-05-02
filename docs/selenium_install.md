@@ -2,31 +2,40 @@
 
 ***
 ## Option 1: Run Selenium server + browser driver locally
-### 1. Install Selenium server
-Selenium server is simply a jar file. To install (download) it, just run this command in the root directory
-of your project or root directory of your tests
-```shell
-mkdir selenium-server && cd selenium && wget https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.6.0/selenium-server-4.6.0.jar && cd -
+###  1. Install Selenium Standalone Server and Webdriver
+`vgl install dev-kit -b chrome`
+
+If everything is okay and your machine has all dependencies installed, you will see this output:
+```text
+Found: chrome browser, version 112.0.5615.165.
+Downloading driver for chrome browser ... OK
+Downloading Selenium Standalone server ...OK
 ```
-### 2. Install browser driver
-You will also need to download Selenium driver for the browser where you want to execute the tests. This driver is used
-by Selenium server to start the browser of your choice - see following table for the most common browsers:
 
-| Browser | Driver              | Download link                                                                     |
-|---------|---------------------|-----------------------------------------------------------------------------------|
-| Firefox | Geckodriver         | [Download](https://github.com/mozilla/geckodriver/releases)                       |
-| Chrome  | Chromedriver        | [Download](https://sites.google.com/a/chromium.org/chromedriver/downloads)        |
-| MS Edge | Microsoft WebDriver | [Download](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) |
+### 2. Run Selenium Server
+To run your Selenium Server use:
+`vgl run selenium-server`
 
-Download the browser driver and place the binary file (like geckodriver or chromedriver) to the `selenium-server/` 
-directory (where our selenium standalone server is located).
-You can also place the file elsewhere, but then you must pass the path to the Selenium server, but as for me, it is easier
-to have server and driver binaries in one place.
+This command will launch Selenium Standalone server on your local machine.
 
-### 3. Start Selenium server
-To start the Selenium server listening for incoming connections simply run:
-```shell
-java -jar selenium-server/selenium-server-4.6.0.jar
+### Need help? Use `--help`
+To see all available options for these commands you can use `--help` flag.
+
+For example:
+`vgl run selenium-server --help`
+
+Will output this:
+```text
+Usage: vgl run selenium-server [OPTIONS]
+
+  Run Selenium Server JAR file
+
+Options:
+  -p, --port INTEGER  Port number for the server
+  -D, --driver TEXT   Specify driver options (e.g.
+                      -Dwebdriver.chrome.driver=chromedriver)
+  -d, --daemon        Run the server as a daemon
+  --help              Show this message and exit.
 ```
 
 ## Option 2: Start Selenium server + browser inside Docker
