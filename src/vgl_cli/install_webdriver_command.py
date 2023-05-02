@@ -85,9 +85,9 @@ def download_driver(browser, version):
         click.secho(f"Could not find download URL for {browser} driver.", fg="red")
 
 
-@click.command(name='install:webdriver')
+@click.command(name='install:webdriver', help="Install the webdriver for a chosen browser.")
 @click.option('--browser', type=click.Choice(['chrome', 'firefox', 'edge']), required=True)
-def install_selenium_dev_server(browser):
+def install_webdriver(browser):
     # Create the selenium-server directory if it doesn't exist
     os.makedirs("selenium-server", exist_ok=True)
 
@@ -104,4 +104,4 @@ def install_selenium_dev_server(browser):
 
 
 if __name__ == "__main__":
-    install_selenium_dev_server()
+    install_webdriver()

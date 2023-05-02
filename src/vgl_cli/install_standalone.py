@@ -28,7 +28,7 @@ def download_selenium_server():
         f.write(response.content)
 
 
-@click.command(name="install:standalone")
+@click.command(name="install:standalone", help="Install Selenium Standalone server.")
 def install_selenium_standalone():
     if check_selenium_requirements():
         click.secho("Downloading Selenium Standalone server ...", nl=False)
