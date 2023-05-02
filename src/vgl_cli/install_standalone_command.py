@@ -28,12 +28,16 @@ def download_selenium_server():
         f.write(response.content)
 
 
-@click.command(name="install:standalone", help="Install Selenium Standalone server.")
-def install_selenium_standalone():
+def check_req_and_install_selenium_server():
     if check_selenium_requirements():
         click.secho("Downloading Selenium Standalone server ...", nl=False)
         download_selenium_server()
         click.secho("OK", fg="green")
+
+
+@click.command(name="install:standalone", help="Install Selenium Standalone server.")
+def install_selenium_standalone():
+    check_req_and_install_selenium_server()
 
 
 if __name__ == "__main__":

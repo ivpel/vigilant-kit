@@ -85,13 +85,7 @@ def download_driver(browser, version):
         click.secho(f"Could not find download URL for {browser} driver.", fg="red")
 
 
-@click.command(name='install:webdriver', help="Install the webdriver for a chosen browser.")
-@click.option('--browser', type=click.Choice(['chrome', 'firefox', 'edge']), required=True)
-def install_webdriver(browser):
-    # Create the selenium-server directory if it doesn't exist
-    os.makedirs("selenium-server", exist_ok=True)
-
-    # Check if the browser is installed and get its version
+def check_version_and_download_driver(browser):
     version = get_browser_version(browser)
     if version is None:
         click.secho(f"{browser} is not installed on this machine", fg="red")
@@ -101,6 +95,16 @@ def install_webdriver(browser):
         click.echo(f"Downloading driver for {browser} browser ... ", nl=False)
         download_driver(browser, version)
         click.secho("OK", fg="green")
+
+
+@click.command(name='install:webdriver', help="Install the webdriver for a chosen browser.")
+@click.option('-b', '--browser', type=click.Choice(['chrome', 'firefox', 'edge']), required=True)
+def install_webdriver(browser):
+    # Create the selenium-server directory if it doesn't exist
+    os.makedirs("selenium-server", exist_ok=True)
+
+    # Check if the browser is installed and get its version
+    check_version_and_download_driver(browser)
 
 
 if __name__ == "__main__":
