@@ -4,12 +4,11 @@ methods for interacting with the WebBrowser, assertions, and waiting. With Vigil
 cases in a minute and configure the process easily with just one .vigilant.env file.
 
 ## Why Vigilant?
-- **Easy to start**: One `.vigilant.env` file for configuration, one `vgl install dev-kit` script for installing
-Selenium Standalone Server and Webdriver for browser.
+- **Easy to start & Faster To Write**: Easy configuration process, straightforward way to writing your tests.
+Vigilant provides you with methods that help you write functional tests quickly without spending time on writing 
+boilerplate code every time you start a new project. 
 - **Flexible Framework Usage**: Usage is not limited to a single testing framework; you can use Vigilant with unittest,
   pytest, or anything else.
-- **Faster Test Writing**: Vigilant provides you with methods that help you write functional tests quickly without
-  spending time on writing boilerplate code every time you start a new project.
 
 ## What it includes?
 Methods for **interacting** with WebBrowser (`click`, `scroll_to`,  etc.), **assertions** (`see`, `dont_see`, `see_text`
