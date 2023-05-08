@@ -48,17 +48,19 @@ def generate_md_docs(target_directory, output_file):
         f.write("# Table of Contents\n\n")
         for func in all_functions:
             func_name = func['func_name']
-            anchor = func_name.replace("(", "").replace(")", "").replace(",", "").replace(" ", "")
-            f.write(f"- [{func_name}](#{anchor})\n")
+            func_name_no_args = re.sub(r'\([^)]*\)', '', func_name)
+            anchor = func_name_no_args.replace(" ", "")
+            f.write(f"- [{func_name_no_args}](#{anchor})\n")
         f.write("\n")
 
         for func in all_functions:
             func_name = func['func_name']
+            func_name_no_args = re.sub(r'\([^)]*\)', '', func_name)
             docstring = func['docstring']
             line_number = func['line_number']
             file_path = func['file_path']
 
-            f.write(f"## {func_name}\n\n")
+            f.write(f"## {func_name_no_args}\n\n")
             f.write(f"{docstring}\n\n")
 
             f.write(
@@ -71,7 +73,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     target_directory = Path(sys.argv[1])
-    output_file = "../documentation.md"
+    output_file = "documentation.md"
 
     # Remove existing output file if it exists
     if os.path.exists(output_file):

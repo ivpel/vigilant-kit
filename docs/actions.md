@@ -1,65 +1,63 @@
-# Actions
-
 # Table of Contents
 
-- [accept_alert(self)](#accept_alertself)
-- [by_xpath_or_css(self, selector: str)](#by_xpath_or_cssselfselector:str)
-- [clear_field(self, selector)](#clear_fieldselfselector)
-- [click(self, selector)](#clickselfselector)
-- [click_with_delay(self, selector, delay=2)](#click_with_delayselfselectordelay=2)
-- [close(self)](#closeself)
-- [count_elements(self, selector: str)](#count_elementsselfselector:str)
-- [delete_all_cookies(self)](#delete_all_cookiesself)
-- [delete_cookie(self, cookie_to_delete)](#delete_cookieselfcookie_to_delete)
-- [dismiss_alert(self)](#dismiss_alertself)
-- [dont_see(self, selectors: [str | list])](#dont_seeselfselectors:[str|list])
-- [dont_see_in_current_url(self, search_key: str)](#dont_see_in_current_urlselfsearch_key:str)
-- [dont_see_in_title(self, search_key: str)](#dont_see_in_titleselfsearch_key:str)
-- [execute_async_js_script(self, js_script, arguments=None)](#execute_async_js_scriptselfjs_scriptarguments=None)
-- [execute_js_script(self, js_script, arguments=None)](#execute_js_scriptselfjs_scriptarguments=None)
-- [fill_field(self, selector, value)](#fill_fieldselfselectorvalue)
-- [fill_form(self, selector_data)](#fill_formselfselector_data)
-- [find(self, selector: str)](#findselfselector:str)
-- [find_by_class(self, selector: str)](#find_by_classselfselector:str)
-- [find_multiply_by_css(self, selector: str)](#find_multiply_by_cssselfselector:str)
-- [find_multiply_by_xpath(self, selector: str)](#find_multiply_by_xpathselfselector:str)
-- [get_all_cookies(self)](#get_all_cookiesself)
-- [get_base_url()](#get_base_url)
-- [get_cookie(self, cookie)](#get_cookieselfcookie)
-- [get_page_title(self)](#get_page_titleself)
-- [get_text_from_element(self, selector)](#get_text_from_elementselfselector)
-- [get_timeout()](#get_timeout)
-- [maximize_window(self)](#maximize_windowself)
-- [move_mouse_on_element(self, selector)](#move_mouse_on_elementselfselector)
-- [page_back(self)](#page_backself)
-- [page_forward(self)](#page_forwardself)
-- [page_refresh(self)](#page_refreshself)
-- [press_key(self, key)](#press_keyselfkey)
-- [quit(self)](#quitself)
-- [resize_window(self, width, height)](#resize_windowselfwidthheight)
-- [scroll_to(self, selector)](#scroll_toselfselector)
-- [see(self, selectors: [str | list])](#seeselfselectors:[str|list])
-- [see_at_least_one(self, selector)](#see_at_least_oneselfselector)
-- [see_elements_in_quantity_of(self, selector: str, qty: int)](#see_elements_in_quantity_ofselfselector:strqty:int)
-- [see_in_title(self, search_key)](#see_in_titleselfsearch_key)
-- [see_in_url(self, search_key: str)](#see_in_urlselfsearch_key:str)
-- [see_text(self, text)](#see_textselftext)
-- [send_keys(self, selector, keys)](#send_keysselfselectorkeys)
-- [set_cookie(self, cookie_name: dict)](#set_cookieselfcookie_name:dict)
-- [strict_wait(self, seconds: int)](#strict_waitselfseconds:int)
-- [submit_form(self, selector)](#submit_formselfselector)
-- [switch_to_default(self)](#switch_to_defaultself)
-- [switch_to_frame(self, frame_id)](#switch_to_frameselfframe_id)
-- [type_in_alert(self, value)](#type_in_alertselfvalue)
-- [wait_for_alert_(self, selector: str)](#wait_for_alert_selfselector:str)
-- [wait_for_element_to_be_present_in_dom(self, selector: str)](#wait_for_element_to_be_present_in_domselfselector:str)
-- [wait_for_element_to_be_visible(self, selector: str)](#wait_for_element_to_be_visibleselfselector:str)
-- [wait_for_element_to_disappear(self, selector: str)](#wait_for_element_to_disappearselfselector:str)
-- [wait_for_text_to_be_present_in_element(self, selector: str, text: str)](#wait_for_text_to_be_present_in_elementselfselector:strtext:str)
-- [wait_for_text_to_be_present_in_element_attribute(self, selector: str, text_in_attribute: str)](#wait_for_text_to_be_present_in_element_attributeselfselector:strtext_in_attribute:str)
-- [wait_for_text_to_be_present_in_element_value(self, selector: str, value_text: str)](#wait_for_text_to_be_present_in_element_valueselfselector:strvalue_text:str)
+- [accept_alert](#accept_alert)
+- [by_xpath_or_css](#by_xpath_or_css)
+- [clear_field](#clear_field)
+- [click](#click)
+- [click_with_delay](#click_with_delay)
+- [close](#close)
+- [count_elements](#count_elements)
+- [delete_all_cookies](#delete_all_cookies)
+- [delete_cookie](#delete_cookie)
+- [dismiss_alert](#dismiss_alert)
+- [dont_see](#dont_see)
+- [dont_see_in_current_url](#dont_see_in_current_url)
+- [dont_see_in_title](#dont_see_in_title)
+- [execute_async_js_script](#execute_async_js_script)
+- [execute_js_script](#execute_js_script)
+- [fill_field](#fill_field)
+- [fill_form](#fill_form)
+- [find](#find)
+- [find_by_class](#find_by_class)
+- [find_multiply_by_css](#find_multiply_by_css)
+- [find_multiply_by_xpath](#find_multiply_by_xpath)
+- [get_all_cookies](#get_all_cookies)
+- [get_base_url](#get_base_url)
+- [get_cookie](#get_cookie)
+- [get_page_title](#get_page_title)
+- [get_text_from_element](#get_text_from_element)
+- [get_timeout](#get_timeout)
+- [maximize_window](#maximize_window)
+- [move_mouse_on_element](#move_mouse_on_element)
+- [page_back](#page_back)
+- [page_forward](#page_forward)
+- [page_refresh](#page_refresh)
+- [press_key](#press_key)
+- [quit](#quit)
+- [resize_window](#resize_window)
+- [scroll_to](#scroll_to)
+- [see](#see)
+- [see_at_least_one](#see_at_least_one)
+- [see_elements_in_quantity_of](#see_elements_in_quantity_of)
+- [see_in_title](#see_in_title)
+- [see_in_url](#see_in_url)
+- [see_text](#see_text)
+- [send_keys](#send_keys)
+- [set_cookie](#set_cookie)
+- [strict_wait](#strict_wait)
+- [submit_form](#submit_form)
+- [switch_to_default](#switch_to_default)
+- [switch_to_frame](#switch_to_frame)
+- [type_in_alert](#type_in_alert)
+- [wait_for_alert_](#wait_for_alert_)
+- [wait_for_element_to_be_present_in_dom](#wait_for_element_to_be_present_in_dom)
+- [wait_for_element_to_be_visible](#wait_for_element_to_be_visible)
+- [wait_for_element_to_disappear](#wait_for_element_to_disappear)
+- [wait_for_text_to_be_present_in_element](#wait_for_text_to_be_present_in_element)
+- [wait_for_text_to_be_present_in_element_attribute](#wait_for_text_to_be_present_in_element_attribute)
+- [wait_for_text_to_be_present_in_element_value](#wait_for_text_to_be_present_in_element_value)
 
-## accept_alert(self)
+## accept_alert
 
 
         Accepts the alert.
@@ -78,7 +76,7 @@ def accept_alert(self) -> return_type:
     # Function code goes here
 ```
 
-## by_xpath_or_css(self, selector: str)
+## by_xpath_or_css
 
 
         Return tuple with search pattern (XPATH or CSS) and searched selector.
@@ -99,7 +97,7 @@ def by_xpath_or_css(self, selector: str) -> return_type:
     # Function code goes here
 ```
 
-## clear_field(self, selector)
+## clear_field
 
 
         Clears a field after it becomes visible.
@@ -120,7 +118,7 @@ def clear_field(self, selector) -> return_type:
     # Function code goes here
 ```
 
-## click(self, selector)
+## click
 
 
         Clicks on an element after it becomes visible.
@@ -141,7 +139,7 @@ def click(self, selector) -> return_type:
     # Function code goes here
 ```
 
-## click_with_delay(self, selector, delay=2)
+## click_with_delay
 
 
         Clicks on an element only after it becomes visible and adds an additional delay before click.
@@ -164,7 +162,7 @@ def click_with_delay(self, selector, delay=2) -> return_type:
     # Function code goes here
 ```
 
-## close(self)
+## close
 
 
         Closes the current window.
@@ -183,7 +181,7 @@ def close(self) -> return_type:
     # Function code goes here
 ```
 
-## count_elements(self, selector: str)
+## count_elements
 
 
         Count all elements that match the provided selector, visible or not.
@@ -204,7 +202,7 @@ def count_elements(self, selector: str) -> return_type:
     # Function code goes here
 ```
 
-## delete_all_cookies(self)
+## delete_all_cookies
 
 
         Deletes all cookies in the scope of the session.
@@ -223,7 +221,7 @@ def delete_all_cookies(self) -> return_type:
     # Function code goes here
 ```
 
-## delete_cookie(self, cookie_to_delete)
+## delete_cookie
 
 
         Deletes a specific cookie.
@@ -244,7 +242,7 @@ def delete_cookie(self, cookie_to_delete) -> return_type:
     # Function code goes here
 ```
 
-## dismiss_alert(self)
+## dismiss_alert
 
 
         Dismisses the alert.
@@ -263,7 +261,7 @@ def dismiss_alert(self) -> return_type:
     # Function code goes here
 ```
 
-## dont_see(self, selectors: [str | list])
+## dont_see
 
 
         Assert that none of the elements matching the provided selectors are visible.
@@ -282,7 +280,7 @@ def dont_see(self, selectors: [str | list]) -> return_type:
     # Function code goes here
 ```
 
-## dont_see_in_current_url(self, search_key: str)
+## dont_see_in_current_url
 
 
         Assert that the provided search key is not present in the current page URL.
@@ -301,7 +299,7 @@ def dont_see_in_current_url(self, search_key: str) -> return_type:
     # Function code goes here
 ```
 
-## dont_see_in_title(self, search_key: str)
+## dont_see_in_title
 
 
         Assert that the provided search key is not present in the current page title.
@@ -320,7 +318,7 @@ def dont_see_in_title(self, search_key: str) -> return_type:
     # Function code goes here
 ```
 
-## execute_async_js_script(self, js_script, arguments=None)
+## execute_async_js_script
 
 
         Executes an asynchronous JavaScript script with optional arguments.
@@ -343,7 +341,7 @@ def execute_async_js_script(self, js_script, arguments=None) -> return_type:
     # Function code goes here
 ```
 
-## execute_js_script(self, js_script, arguments=None)
+## execute_js_script
 
 
         Executes a JavaScript script with optional arguments.
@@ -366,7 +364,7 @@ def execute_js_script(self, js_script, arguments=None) -> return_type:
     # Function code goes here
 ```
 
-## fill_field(self, selector, value)
+## fill_field
 
 
         Fills a field with a specified value after the field becomes visible.
@@ -389,7 +387,7 @@ def fill_field(self, selector, value) -> return_type:
     # Function code goes here
 ```
 
-## fill_form(self, selector_data)
+## fill_form
 
 
         Fills multiple fields in a form using a dictionary of selectors and values.
@@ -410,7 +408,7 @@ def fill_form(self, selector_data) -> return_type:
     # Function code goes here
 ```
 
-## find(self, selector: str)
+## find
 
 
         return self.driver.find_element(*self.by_xpath_or_css(selector))
@@ -429,7 +427,7 @@ def find(self, selector: str) -> return_type:
     # Function code goes here
 ```
 
-## find_by_class(self, selector: str)
+## find_by_class
 
 
         Find element by class name.
@@ -450,7 +448,7 @@ def find_by_class(self, selector: str) -> return_type:
     # Function code goes here
 ```
 
-## find_multiply_by_css(self, selector: str)
+## find_multiply_by_css
 
 
         Find multiple elements by CSS selector.
@@ -471,7 +469,7 @@ def find_multiply_by_css(self, selector: str) -> return_type:
     # Function code goes here
 ```
 
-## find_multiply_by_xpath(self, selector: str)
+## find_multiply_by_xpath
 
 
         Find multiple elements by XPATH selector.
@@ -492,7 +490,7 @@ def find_multiply_by_xpath(self, selector: str) -> return_type:
     # Function code goes here
 ```
 
-## get_all_cookies(self)
+## get_all_cookies
 
 
         Returns a set of dictionaries corresponding to cookies visible in the current session.
@@ -511,7 +509,7 @@ def get_all_cookies(self) -> return_type:
     # Function code goes here
 ```
 
-## get_base_url()
+## get_base_url
 
 
     Get the base URL from the environment variable 'BASE_URL'.
@@ -530,7 +528,7 @@ def get_base_url() -> return_type:
     # Function code goes here
 ```
 
-## get_cookie(self, cookie)
+## get_cookie
 
 
         Gets a single cookie.
@@ -551,7 +549,7 @@ def get_cookie(self, cookie) -> return_type:
     # Function code goes here
 ```
 
-## get_page_title(self)
+## get_page_title
 
 
         Returns the title of the current page.
@@ -570,7 +568,7 @@ def get_page_title(self) -> return_type:
     # Function code goes here
 ```
 
-## get_text_from_element(self, selector)
+## get_text_from_element
 
 
         Gets the text from an element after it becomes visible.
@@ -591,7 +589,7 @@ def get_text_from_element(self, selector) -> return_type:
     # Function code goes here
 ```
 
-## get_timeout()
+## get_timeout
 
 
         Waits for the element with the specified selector to be clickable.
@@ -612,7 +610,7 @@ def get_timeout() -> return_type:
     # Function code goes here
 ```
 
-## maximize_window(self)
+## maximize_window
 
 
         Maximizes the current window that the WebDriver is using.
@@ -631,7 +629,7 @@ def maximize_window(self) -> return_type:
     # Function code goes here
 ```
 
-## move_mouse_on_element(self, selector)
+## move_mouse_on_element
 
 
         Moves the mouse cursor over an element after the element becomes visible.
@@ -652,7 +650,7 @@ def move_mouse_on_element(self, selector) -> return_type:
     # Function code goes here
 ```
 
-## page_back(self)
+## page_back
 
 
         Goes one step backward in the browser history.
@@ -671,7 +669,7 @@ def page_back(self) -> return_type:
     # Function code goes here
 ```
 
-## page_forward(self)
+## page_forward
 
 
         Goes one step forward in the browser history.
@@ -690,7 +688,7 @@ def page_forward(self) -> return_type:
     # Function code goes here
 ```
 
-## page_refresh(self)
+## page_refresh
 
 
         Refreshes the current page.
@@ -709,7 +707,7 @@ def page_refresh(self) -> return_type:
     # Function code goes here
 ```
 
-## press_key(self, key)
+## press_key
 
 
         Presses a specified key.
@@ -730,7 +728,7 @@ def press_key(self, key) -> return_type:
     # Function code goes here
 ```
 
-## quit(self)
+## quit
 
 
         Quits the driver and closes every associated window.
@@ -749,7 +747,7 @@ def quit(self) -> return_type:
     # Function code goes here
 ```
 
-## resize_window(self, width, height)
+## resize_window
 
 
         Sets the current window width and height.
@@ -772,7 +770,7 @@ def resize_window(self, width, height) -> return_type:
     # Function code goes here
 ```
 
-## scroll_to(self, selector)
+## scroll_to
 
 
         Scrolls to an element.
@@ -793,7 +791,7 @@ def scroll_to(self, selector) -> return_type:
     # Function code goes here
 ```
 
-## see(self, selectors: [str | list])
+## see
 
 
         Assert that at least one of the elements matching the provided selectors is visible.
@@ -812,7 +810,7 @@ def see(self, selectors: [str | list]) -> return_type:
     # Function code goes here
 ```
 
-## see_at_least_one(self, selector)
+## see_at_least_one
 
 
         Assert that at least one element matching the provided selector is visible.
@@ -831,7 +829,7 @@ def see_at_least_one(self, selector) -> return_type:
     # Function code goes here
 ```
 
-## see_elements_in_quantity_of(self, selector: str, qty: int)
+## see_elements_in_quantity_of
 
 
         Assert that the number of visible elements that match the provided selector is equal to the provided quantity.
@@ -852,7 +850,7 @@ def see_elements_in_quantity_of(self, selector: str, qty: int) -> return_type:
     # Function code goes here
 ```
 
-## see_in_title(self, search_key)
+## see_in_title
 
 
         Assert that the provided search key is present in the current page title.
@@ -871,7 +869,7 @@ def see_in_title(self, search_key) -> return_type:
     # Function code goes here
 ```
 
-## see_in_url(self, search_key: str)
+## see_in_url
 
 
         Assert that the provided search key is present in the current page URL.
@@ -890,7 +888,7 @@ def see_in_url(self, search_key: str) -> return_type:
     # Function code goes here
 ```
 
-## see_text(self, text)
+## see_text
 
 
         Assert that the provided text is present on the current page.
@@ -909,7 +907,7 @@ def see_text(self, text) -> return_type:
     # Function code goes here
 ```
 
-## send_keys(self, selector, keys)
+## send_keys
 
 
         Sends keys to a specified field.
@@ -932,7 +930,7 @@ def send_keys(self, selector, keys) -> return_type:
     # Function code goes here
 ```
 
-## set_cookie(self, cookie_name: dict)
+## set_cookie
 
 
         Sets a new cookie.
@@ -951,7 +949,7 @@ def set_cookie(self, cookie_name: dict) -> return_type:
     # Function code goes here
 ```
 
-## strict_wait(self, seconds: int)
+## strict_wait
 
 
         Waits for the specified number of seconds.
@@ -972,7 +970,7 @@ def strict_wait(self, seconds: int) -> return_type:
     # Function code goes here
 ```
 
-## submit_form(self, selector)
+## submit_form
 
 
         Submits a form using a specified selector.
@@ -993,7 +991,7 @@ def submit_form(self, selector) -> return_type:
     # Function code goes here
 ```
 
-## switch_to_default(self)
+## switch_to_default
 
 
         Switches the WebDriver focus to the default frame.
@@ -1012,7 +1010,7 @@ def switch_to_default(self) -> return_type:
     # Function code goes here
 ```
 
-## switch_to_frame(self, frame_id)
+## switch_to_frame
 
 
         Switches the WebDriver focus to the specified frame.
@@ -1033,7 +1031,7 @@ def switch_to_frame(self, frame_id) -> return_type:
     # Function code goes here
 ```
 
-## type_in_alert(self, value)
+## type_in_alert
 
 
         Types the specified value in the alert.
@@ -1054,7 +1052,7 @@ def type_in_alert(self, value) -> return_type:
     # Function code goes here
 ```
 
-## wait_for_alert_(self, selector: str)
+## wait_for_alert_
 
 
         Waits for an alert to be present.
@@ -1075,7 +1073,7 @@ def wait_for_alert_(self, selector: str) -> return_type:
     # Function code goes here
 ```
 
-## wait_for_element_to_be_present_in_dom(self, selector: str)
+## wait_for_element_to_be_present_in_dom
 
 
         Waits for the element with the specified selector to be present in the DOM.
@@ -1096,7 +1094,7 @@ def wait_for_element_to_be_present_in_dom(self, selector: str) -> return_type:
     # Function code goes here
 ```
 
-## wait_for_element_to_be_visible(self, selector: str)
+## wait_for_element_to_be_visible
 
 
         Waits for the element with the specified selector to be visible.
@@ -1117,7 +1115,7 @@ def wait_for_element_to_be_visible(self, selector: str) -> return_type:
     # Function code goes here
 ```
 
-## wait_for_element_to_disappear(self, selector: str)
+## wait_for_element_to_disappear
 
 
         Waits for the element with the specified selector to disappear.
@@ -1138,7 +1136,7 @@ def wait_for_element_to_disappear(self, selector: str) -> return_type:
     # Function code goes here
 ```
 
-## wait_for_text_to_be_present_in_element(self, selector: str, text: str)
+## wait_for_text_to_be_present_in_element
 
 
         Waits for the specified text to be present in the element with the given selector.
@@ -1161,7 +1159,7 @@ def wait_for_text_to_be_present_in_element(self, selector: str, text: str) -> re
     # Function code goes here
 ```
 
-## wait_for_text_to_be_present_in_element_attribute(self, selector: str, text_in_attribute: str)
+## wait_for_text_to_be_present_in_element_attribute
 
 
         Waits for the specified text to be present in the attribute of the element with the given selector.
@@ -1184,7 +1182,7 @@ def wait_for_text_to_be_present_in_element_attribute(self, selector: str, text_i
     # Function code goes here
 ```
 
-## wait_for_text_to_be_present_in_element_value(self, selector: str, value_text: str)
+## wait_for_text_to_be_present_in_element_value
 
 
         Waits for the specified text to be present in the value of the element with the given selector.
