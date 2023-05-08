@@ -13,20 +13,37 @@ class Assertions:
         self.finder: Finder = Finder(self.driver)
         self.waiter: Waiter = Waiter(self.driver, self.finder)
 
-    def count_visible_elements(self, selector):
+    def count_visible_elements(self, selector: str) -> int:
+        """
+        Count visible elements that match the provided selector.
+
+        :param selector: CSS selector
+        :return: number of visible elements that match the selector
+        """
         try:
             if self.finder.find(selector).is_displayed():
                 return len(self.finder.find_multiply(selector))
         except NoSuchElementException:
             return 0
 
-    def count_elements(self, selector):
+    def count_elements(self, selector: str) -> int:
+        """
+        Count all elements that match the provided selector, visible or not.
+
+        :param selector: CSS selector
+        :return: number of elements that match the selector
+        """
         try:
             return len(self.finder.find_multiply(selector))
         except NoSuchElementException:
             return 0
 
-    def dont_see(self, selectors):
+    def dont_see(self, selectors: [str | list]) -> None:
+        """
+        Assert that none of the elements matching the provided selectors are visible.
+
+        :param selectors: list of CSS selectors
+        """
         if isinstance(selectors, list):
             for element in selectors:
                 log.info(f"Assert: don't see element with selector {element}")
@@ -37,17 +54,32 @@ class Assertions:
             assert self.count_visible_elements(selectors) == 0, \
                 f"Expected 0 elements with selector {selectors}, but found {self.count_visible_elements(selectors)}"
 
-    def dont_see_in_title(self, search_key: str):
+    def dont_see_in_title(self, search_key: str) -> None:
+        """
+        Assert that the provided search key is not present in the current page title.
+
+        :param search_key: string to search for
+        """
         log.info(f"Assert: don't see string {search_key} in current page title")
         assert search_key not in self.driver.title, \
             f"String {search_key} expected to to be missing in current page title but it appear"
 
-    def dont_see_in_current_url(self, search_key: str):
+    def dont_see_in_current_url(self, search_key: str) -> None:
+        """
+        Assert that the provided search key is not present in the current page URL.
+
+        :param search_key: string to search for
+        """
         log.info(f"Assert: don't see string {search_key} in current page URL")
         assert search_key not in self.driver.current_url, \
             f"String {search_key} expected to to be missing in current page URL but it appear"
 
-    def see(self, selectors):
+    def see(self, selectors: [str | list]) -> None:
+        """
+        Assert that at least one of the elements matching the provided selectors is visible.
+
+        :param selectors: list of CSS selectors
+        """
         if isinstance(selectors, list):
             for element in selectors:
                 log.info(f"Assert: see element with selector {element}")
@@ -59,26 +91,52 @@ class Assertions:
                 f"Expected 1 element with selector {selectors}, but found {self.count_visible_elements(selectors)}"
 
     def see_elements_in_quantity_of(self, selector: str, qty: int):
+        """
+        Assert that the number of visible elements that match the provided selector is equal to the provided quantity.
+
+        :param selector: CSS selector
+        :param qty: expected number of elements
+        """
         log.info(f"Assert: see elements with selector {selector} in quantity of {qty}")
         assert qty == self.count_visible_elements(selector), \
             f"Expected {qty} elements with selector {selector}, but found {self.count_visible_elements(selector)}"
 
     def see_at_least_one(self, selector):
+        """
+        Assert that at least one element matching the provided selector is visible.
+
+        :param selector: CSS selector
+        """
         log.info(f"Assert: see at least 1 element with selector {selector}")
         assert self.count_visible_elements(selector) > 1, \
             f"Expected quantity of elements with selector {selector} be at least 1, but found {self.count_visible_elements(selector)}"
 
     def see_in_title(self, search_key):
+        """
+        Assert that the provided search key is present in the current page title.
+
+        :param search_key: string to search for
+        """
         log.info(f"Assert: see string {search_key} in current page title")
         assert search_key in self.driver.title, \
             f"String {search_key} expected to to be in current page title but it is missing"
 
     def see_in_url(self, search_key: str):
+        """
+        Assert that the provided search key is present in the current page URL.
+
+        :param search_key: string to search for
+        """
         log.info(f"Assert: see string {search_key} in current page URL")
         assert search_key in self.driver.current_url, \
             f"String {search_key} expected to to be in current page URL but it is missing"
 
     def see_text(self, text):
+        """
+        Assert that the provided text is present on the current page.
+
+        :param text: text to search for
+        """
         selector_with_text = '//*[text()="' + text + '"]'
         assert self.count_visible_elements(selector_with_text) > 0,\
             f"Text {text} was not found on the current page"
