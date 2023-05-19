@@ -29,13 +29,18 @@ pip install vigilant-kit
 ```
 
 ## Docs
- - [How to install Selenium server & browser drivers](docs/selenium_install.md)
- - [Quick start example using `unittest` library](docs/vigilant_unittest.md) 
- - [Quick start example using `pytest`](docs/vigilant_pytest.md) 
- - [How to add custom browser options](docs/browser_options.md)
- - [Access native Selenium WebDriver methods](docs/native_selenium.md)
- - [List of actions](docs/actions.md).
+### Install
+- [How to install Selenium server & browser drivers](docs/selenium_install.md)
 
-## Tutorials
- - [Testing ecommerce project using `vigilant-kit` and `pytest`](docs/tutorial_pytest.md)
- 
+### Configuration
+- [Vigilant configuration](docs/configuration.md)
+- [How to add custom browser options](docs/browser_options.md)
+- [Access native Selenium WebDriver methods](docs/native_selenium.md)
+
+### Examples & tutorials
+- [Quick start example using `unittest` library](docs/vigilant_unittest.md) 
+- [Quick start example using `pytest`](docs/vigilant_pytest.md) 
+- [Testing ecommerce project using `vigilant-kit` and `pytest`](docs/tutorial_pytest.md)
+
+### Actions
+- [List of actions](docs/actions.md)
