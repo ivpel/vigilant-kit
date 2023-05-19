@@ -34,8 +34,8 @@ pip install vigilant-kit
 
 ### Configuration
 - [Vigilant configuration](docs/configuration.md)
-- [How to add custom browser options](docs/browser_options.md)
-- [Access native Selenium WebDriver methods](docs/native_selenium.md)
+- [Adding custom browser options](docs/browser_options.md)
+- [Using native selenium methods](docs/native_selenium.md)
 
 ### Examples & tutorials
 - [Quick start example using `unittest` library](docs/vigilant_unittest.md) 
