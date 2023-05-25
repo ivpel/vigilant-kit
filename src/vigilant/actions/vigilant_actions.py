@@ -276,6 +276,24 @@ class VigilantActions:
         log.info(f'Clicking on element: {selector}')
         self.finder.find(selector).click()
 
+    def open_new_window(self):
+        """
+        Opens a new window and switches to new window
+
+        :return: self
+        """
+        log.info(f'Opening new window')
+        self.driver.switch_to.new_window('window')
+
+    def open_new_tab(self):
+        """
+        Opens a new tab and switches to it
+
+        :return: self
+        """
+        log.info(f'Opening new tab')
+        self.driver.switch_to.new_window('tab')
+
     def scroll_to(self, selector):
         """
         Scrolls to an element.

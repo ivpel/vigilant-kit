@@ -29,6 +29,8 @@
 - [get_timeout](#get_timeout)
 - [maximize_window](#maximize_window)
 - [move_mouse_on_element](#move_mouse_on_element)
+- [open_new_tab](#open_new_tab)
+- [open_new_window](#open_new_window)
 - [page_back](#page_back)
 - [page_forward](#page_forward)
 - [page_refresh](#page_refresh)
@@ -110,7 +112,7 @@ def by_xpath_or_css(self, selector: str) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 417)
+# src/vigilant/actions/vigilant_actions.py (line 433)
 def clear_field(self, selector) -> return_type:
     """
         Clears a field after it becomes visible.
@@ -378,7 +380,7 @@ def execute_js_script(self, js_script, arguments=None) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 301)
+# src/vigilant/actions/vigilant_actions.py (line 317)
 def fill_field(self, selector, value) -> return_type:
     """
         Fills a field with a specified value after the field becomes visible.
@@ -400,7 +402,7 @@ def fill_field(self, selector, value) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 314)
+# src/vigilant/actions/vigilant_actions.py (line 330)
 def fill_form(self, selector_data) -> return_type:
     """
         Fills multiple fields in a form using a dictionary of selectors and values.
@@ -581,7 +583,7 @@ def get_page_title(self) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 290)
+# src/vigilant/actions/vigilant_actions.py (line 306)
 def get_text_from_element(self, selector) -> return_type:
     """
         Gets the text from an element after it becomes visible.
@@ -642,12 +644,50 @@ def maximize_window(self) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 328)
+# src/vigilant/actions/vigilant_actions.py (line 344)
 def move_mouse_on_element(self, selector) -> return_type:
     """
         Moves the mouse cursor over an element after the element becomes visible.
 
         :param selector: The element to move the mouse cursor over
+        :return: self
+        """
+    # Function code goes here
+```
+
+## open_new_tab
+
+
+        Opens a new tab and switches to it
+
+        :return: self
+        
+
+```python
+# src/vigilant/actions/vigilant_actions.py (line 287)
+def open_new_tab(self) -> return_type:
+    """
+        Opens a new tab and switches to it
+
+        :return: self
+        """
+    # Function code goes here
+```
+
+## open_new_window
+
+
+        Opens a new window and switches to new window
+
+        :return: self
+        
+
+```python
+# src/vigilant/actions/vigilant_actions.py (line 279)
+def open_new_window(self) -> return_type:
+    """
+        Opens a new window and switches to new window
+
         :return: self
         """
     # Function code goes here
@@ -720,7 +760,7 @@ def page_refresh(self) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 341)
+# src/vigilant/actions/vigilant_actions.py (line 357)
 def press_key(self, key) -> return_type:
     """
         Presses a specified key.
@@ -783,7 +823,7 @@ def resize_window(self, width, height) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 279)
+# src/vigilant/actions/vigilant_actions.py (line 295)
 def scroll_to(self, selector) -> return_type:
     """
         Scrolls to an element.
@@ -921,7 +961,7 @@ def see_text(self, text) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 353)
+# src/vigilant/actions/vigilant_actions.py (line 369)
 def send_keys(self, selector, keys) -> return_type:
     """
         Sends keys to a specified field.
@@ -983,7 +1023,7 @@ def strict_wait(self, seconds: int) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 365)
+# src/vigilant/actions/vigilant_actions.py (line 381)
 def submit_form(self, selector) -> return_type:
     """
         Submits a form using a specified selector.
@@ -1043,7 +1083,7 @@ def switch_to_frame(self, frame_id) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 376)
+# src/vigilant/actions/vigilant_actions.py (line 392)
 def switch_to_next_tab(self) -> return_type:
     """
         Switch to the next tab
@@ -1062,7 +1102,7 @@ def switch_to_next_tab(self) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 389)
+# src/vigilant/actions/vigilant_actions.py (line 405)
 def switch_to_previous_tab(self) -> return_type:
     """
         Switch to the previous tab
@@ -1082,7 +1122,7 @@ def switch_to_previous_tab(self) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 402)
+# src/vigilant/actions/vigilant_actions.py (line 418)
 def switch_to_window(self, window_name: str) -> return_type:
     """
         Switch to the window identify by window name(title).
