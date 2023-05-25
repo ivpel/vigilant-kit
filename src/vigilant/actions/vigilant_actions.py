@@ -373,6 +373,47 @@ class VigilantActions:
         self.finder.find(selector).submit()
         return self
 
+    def switch_to_next_tab(self):
+        """
+        Switch to the next tab
+
+        :return: self
+        """
+        window_handles = self.driver.window_handles
+        current_tab_index = window_handles.index(self.driver.current_window_handle)
+        next_tab_index = (current_tab_index + 1) % len(window_handles)
+        log.info(f'Switching to the next tab')
+        self.driver.switch_to.window(window_handles[next_tab_index])
+        return self
+
+    def switch_to_previous_tab(self):
+        """
+        Switch to the previous tab
+
+        :return: self
+        """
+        window_handles = self.driver.window_handles
+        current_tab_index = window_handles.index(self.driver.current_window_handle)
+        next_tab_index = (current_tab_index - 1) % len(window_handles)
+        log.info(f'Switching to the previous tab')
+        self.driver.switch_to.window(window_handles[next_tab_index])
+        return self
+
+    def switch_to_window(self, window_name: str):
+        """
+        Switch to the window identify by window name(title).
+
+        :param  window_name: Window title to switch on
+        :return: self
+        """
+        # Iterate through all window handles
+        for handle in self.driver.window_handles:
+            self.driver.switch_to.window(handle)
+            if self.driver.title == window_name:
+                log.info(f'Switching to the window {window_name}')
+                break
+        return self
+
     def clear_field(self, selector):
         """
         Clears a field after it becomes visible.

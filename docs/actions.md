@@ -48,6 +48,9 @@
 - [submit_form](#submit_form)
 - [switch_to_default](#switch_to_default)
 - [switch_to_frame](#switch_to_frame)
+- [switch_to_next_tab](#switch_to_next_tab)
+- [switch_to_previous_tab](#switch_to_previous_tab)
+- [switch_to_window](#switch_to_window)
 - [type_in_alert](#type_in_alert)
 - [wait_for_alert_](#wait_for_alert_)
 - [wait_for_element_to_be_present_in_dom](#wait_for_element_to_be_present_in_dom)
@@ -107,7 +110,7 @@ def by_xpath_or_css(self, selector: str) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 376)
+# src/vigilant/actions/vigilant_actions.py (line 417)
 def clear_field(self, selector) -> return_type:
     """
         Clears a field after it becomes visible.
@@ -1026,6 +1029,65 @@ def switch_to_frame(self, frame_id) -> return_type:
         Switches the WebDriver focus to the specified frame.
 
         :param frame_id: The ID of the frame to switch to
+        :return: self
+        """
+    # Function code goes here
+```
+
+## switch_to_next_tab
+
+
+        Switch to the next tab
+
+        :return: self
+        
+
+```python
+# src/vigilant/actions/vigilant_actions.py (line 376)
+def switch_to_next_tab(self) -> return_type:
+    """
+        Switch to the next tab
+
+        :return: self
+        """
+    # Function code goes here
+```
+
+## switch_to_previous_tab
+
+
+        Switch to the previous tab
+
+        :return: self
+        
+
+```python
+# src/vigilant/actions/vigilant_actions.py (line 389)
+def switch_to_previous_tab(self) -> return_type:
+    """
+        Switch to the previous tab
+
+        :return: self
+        """
+    # Function code goes here
+```
+
+## switch_to_window
+
+
+        Switch to the window identify by window name(title).
+
+        :param  window_name: Window title to switch on
+        :return: self
+        
+
+```python
+# src/vigilant/actions/vigilant_actions.py (line 402)
+def switch_to_window(self, window_name: str) -> return_type:
+    """
+        Switch to the window identify by window name(title).
+
+        :param  window_name: Window title to switch on
         :return: self
         """
     # Function code goes here
