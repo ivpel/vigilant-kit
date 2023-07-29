@@ -12,10 +12,11 @@ description = "Library that makes functional testing with Selenium WebDriver fas
 readme = "README.md"
 requires-python = ">=3.7"
 dependencies = [
-  "selenium",
-  "python-dotenv",
-  "click",
-  "requests"
+    "selenium",
+    "python-dotenv",
+    "click",
+    "requests",
+    "psutil"
 ]
 
 keywords = ["testing", "selenium", "webdriver", "pytest", "unittest", "bdd", "tdd", "functional", "functional-testing"]
