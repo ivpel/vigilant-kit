@@ -5,6 +5,8 @@ from vigilant.actions.finder import Finder
 from vigilant.actions.waiter import Waiter
 from vigilant.logger import logger as log
 
+RED = "\033[31m"
+RESET = "\033[0m"
 
 class Assertions:
 
@@ -48,11 +50,11 @@ class Assertions:
             for element in selectors:
                 log.info(f"Assert: don't see element with selector {element}")
                 assert self.count_visible_elements(element) == 0,\
-                    f"Expected 0 elements with selector {element}, but found {self.count_visible_elements(element)}"
+                    f"{RED}Expected 0 elements with selector {element}, but found {self.count_visible_elements(element)}{RESET}"
         else:
             log.info(f"Assert: don't see element with selector {selectors}")
             assert self.count_visible_elements(selectors) == 0, \
-                f"Expected 0 elements with selector {selectors}, but found {self.count_visible_elements(selectors)}"
+                f"{RED}Expected 0 elements with selector {selectors}, but found {self.count_visible_elements(selectors)}{RESET}"
 
     def dont_see_in_title(self, search_key: str) -> None:
         """
@@ -62,7 +64,7 @@ class Assertions:
         """
         log.info(f"Assert: don't see string {search_key} in current page title")
         assert search_key not in self.driver.title, \
-            f"String {search_key} expected to to be missing in current page title but it appear"
+            f"{RED}String {search_key} expected to be missing in current page title, but it appears{RESET}"
 
     def dont_see_in_current_url(self, search_key: str) -> None:
         """
@@ -72,7 +74,7 @@ class Assertions:
         """
         log.info(f"Assert: don't see string {search_key} in current page URL")
         assert search_key not in self.driver.current_url, \
-            f"String {search_key} expected to to be missing in current page URL but it appear"
+            f"{RED}String {search_key} expected to to be missing in current page URL, but it appear{RESET}"
 
     def see(self, selectors: [str | list]) -> None:
         """
@@ -84,11 +86,11 @@ class Assertions:
             for element in selectors:
                 log.info(f"Assert: see element with selector {element}")
                 assert self.count_visible_elements(element) > 0,\
-                    f"Expected 1 element with selector {element}, but found {self.count_visible_elements(element)}"
+                    f"{RED}Expected 1 element with selector {element}, but found {self.count_visible_elements(element)}{RESET}"
         else:
             log.info(f"Assert: see element with selector {selectors}")
             assert self.count_visible_elements(selectors) > 0, \
-                f"Expected 1 element with selector {selectors}, but found {self.count_visible_elements(selectors)}"
+                f"{RED}Expected 1 element with selector {selectors}, but found {self.count_visible_elements(selectors)}{RESET}"
 
     def see_elements_in_quantity_of(self, selector: str, qty: int):
         """
@@ -99,7 +101,7 @@ class Assertions:
         """
         log.info(f"Assert: see elements with selector {selector} in quantity of {qty}")
         assert qty == self.count_visible_elements(selector), \
-            f"Expected {qty} elements with selector {selector}, but found {self.count_visible_elements(selector)}"
+            f"{RED}Expected {qty} elements with selector {selector}, but found {self.count_visible_elements(selector)}{RESET}"
 
     def see_at_least_one(self, selector):
         """
@@ -109,7 +111,7 @@ class Assertions:
         """
         log.info(f"Assert: see at least 1 element with selector {selector}")
         assert self.count_visible_elements(selector) > 1, \
-            f"Expected quantity of elements with selector {selector} be at least 1, but found {self.count_visible_elements(selector)}"
+            f"{RED}Expected quantity of elements with selector {selector} be at least 1, but found {self.count_visible_elements(selector)}{RESET}"
 
     def see_in_title(self, search_key):
         """
@@ -119,7 +121,7 @@ class Assertions:
         """
         log.info(f"Assert: see string {search_key} in current page title")
         assert search_key in self.driver.title, \
-            f"String {search_key} expected to to be in current page title but it is missing"
+            f"{RED}String {search_key} expected to be in current page title, but it is missing{RESET}"
 
     def see_in_url(self, search_key: str):
         """
@@ -129,7 +131,7 @@ class Assertions:
         """
         log.info(f"Assert: see string {search_key} in current page URL")
         assert search_key in self.driver.current_url, \
-            f"String {search_key} expected to to be in current page URL but it is missing"
+            f"{RED}String {search_key} expected to be in current page URL, but it is missing{RESET}"
 
     def see_text(self, text):
         """
@@ -139,4 +141,4 @@ class Assertions:
         """
         selector_with_text = '//*[text()="' + text + '"]'
         assert self.count_visible_elements(selector_with_text) > 0,\
-            f"Text {text} was not found on the current page"
+            f"{RED}Text {text} was not found on the current page{RESET}"
