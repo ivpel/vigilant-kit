@@ -6,8 +6,8 @@ from .install_standalone_command import check_req_and_install_selenium_server
 @click.command(name='dev-kit', help="Install local development kit (Webdriver, Selenium Server, etc)")
 @click.option('-b', '--browser', type=click.Choice(['chrome', 'firefox', 'edge']), required=True)
 def install_dev_kit(browser):
-    check_version_and_download_driver(browser)
     check_req_and_install_selenium_server()
+    check_version_and_download_driver(browser)
 
 
 if __name__ == "__main__":

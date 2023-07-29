@@ -75,12 +75,12 @@ def download_driver(browser, version):
                 f.write(response.content)
             with zipfile.ZipFile(f"selenium-server/{browser}_driver.zip", 'r') as zip_ref:
                 for member in zip_ref.namelist():
-                    zip_ref.extract(member, f"selenium-server/{browser}_driver/")
+                    zip_ref.extract(member, f"selenium-server/")
         elif download_url.endswith(".tar.gz"):
             with open(f"selenium-server/{browser}_driver.tar.gz", "wb") as f:
                 f.write(response.content)
             with tarfile.open(f"selenium-server/{browser}_driver.tar.gz", 'r:gz') as tar_ref:
-                tar_ref.extractall(f"selenium-server/{browser}_driver/")
+                tar_ref.extractall(f"selenium-server/")
     else:
         click.secho(f"Could not find download URL for {browser} driver.", fg="red")
 
