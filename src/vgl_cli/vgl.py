@@ -13,26 +13,13 @@ def vgl():
     pass
 
 
-@click.group(name="install", help="Install commands")
-def install_group():
-    pass
+vgl.add_command(run_selenium_server)
+vgl.add_command(stop_selenium_server)
 
 
-@click.group(name="selenium", help="Run commands")
-def selenium_group():
-    pass
-
-
-selenium_group.add_command(run_selenium_server)
-selenium_group.add_command(stop_selenium_server)
-
-
-install_group.add_command(install_webdriver)
-install_group.add_command(install_selenium_standalone)
-install_group.add_command(install_dev_kit)
-
-vgl.add_command(install_group)
-vgl.add_command(selenium_group)
+vgl.add_command(install_webdriver)
+vgl.add_command(install_selenium_standalone)
+vgl.add_command(install_dev_kit)
 
 
 if __name__ == '__main__':

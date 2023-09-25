@@ -35,7 +35,7 @@ def check_req_and_install_selenium_server():
         click.secho("OK", fg="green")
 
 
-@click.command(name="standalone", help="Install Selenium Standalone server.")
+@click.command(name="install:standalone", help="Install Selenium Standalone server.")
 def install_selenium_standalone():
     check_req_and_install_selenium_server()
 

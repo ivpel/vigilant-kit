@@ -1,5 +1,11 @@
 # Changelog for Vigilant Kit
 
+## Version 1.2.9
+
+### Code Refactoring
+
+- Refactor `vgl` CLI so it more simple and clear now.
+
 ## Version 1.2.8
 
 ### New Features

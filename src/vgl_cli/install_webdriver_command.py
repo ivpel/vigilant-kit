@@ -97,7 +97,7 @@ def check_version_and_download_driver(browser):
         click.secho("OK", fg="green")
 
 
-@click.command(name='webdriver', help="Install the webdriver for a chosen browser.")
+@click.command(name='install:webdriver', help="Install the webdriver for a chosen browser.")
 @click.option('-b', '--browser', type=click.Choice(['chrome', 'firefox', 'edge']), required=True)
 def install_webdriver(browser):
     # Create the selenium-server directory if it doesn't exist

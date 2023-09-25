@@ -12,7 +12,7 @@ def find_selenium_server_process():
     return None
 
 
-@click.command(name='run', help="Run Selenium Server JAR file")
+@click.command(name='server:run', help="Run Selenium Server JAR file")
 @click.option('--port', '-p', type=int, default=4444, help="Port number for the server")
 @click.option('--driver', '-D', multiple=True,
               help="Specify driver options (e.g. -Dwebdriver.chrome.driver=chromedriver)")
@@ -33,7 +33,7 @@ def run_selenium_server(port, driver, daemon):
         subprocess.run(cmd)
 
 
-@click.command(name='stop', help="Stop the running Selenium Server")
+@click.command(name='server:stop', help="Stop the running Selenium Server")
 def stop_selenium_server():
     selenium_server_process = find_selenium_server_process()
     if selenium_server_process:
