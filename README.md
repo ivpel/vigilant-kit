@@ -5,9 +5,9 @@ Vigilant, you can start writing complex test cases in a minute.
 ## Why Vigilant?
 * **Easy to start & Fast To Write**: Vigilant provides you with methods that help you write functional tests quickly 
 without spending time on writing boilerplate code every time you start a new project.
-* **Flexible Framework Usage**: Usage is not limited to a single testing framework; you can use Vigilant with unittest,
-  pytest, or anything else.
-* **Stability**: We use Selenium WebDriver. It is a W3C Recommendation.
+* **No limit in usage**: You are not limited to a single testing framework; you can use Vigilant with **unittest**,
+  **pytest**, or for **scrapping data**. It's just a tool, use it as you want.
+* **Stability**: We use Selenium WebDriver. It is a **W3C standard**.
    - WebDriver drives a browser natively, as a user would, either locally or on a remote machine using the Selenium server.
    - WebDriver is designed as a simple and more concise programming interface.
    - WebDriver is a compact object-oriented API.
