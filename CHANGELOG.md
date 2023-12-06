@@ -1,5 +1,16 @@
 # Changelog for Vigilant Kit
 
+## Version 1.3.0
+
+### New Features
+
+- Changed way of configuration for local development. Introduced `vgl_config.yaml` file.
+- Updated documentation related to new configuration.
+
+### Dependencies
+
+- Added new dependency: `pyyaml`.
+
 ## Version 1.2.9
 
 ### Code Refactoring
