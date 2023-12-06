@@ -14,8 +14,8 @@ without spending time on writing boilerplate code every time you start a new pro
    - It drives the browser effectively.
 
 ## What it includes?
-Vigilant include methods for interacting with browser,  for asserting conditions and also methods for waiting 
-those conditions.
+Vigilant provide a suite of methods designed for efficient browser interaction, robust assertion of various 
+conditions, and adaptive waiting mechanisms to accommodate different states and conditions.
 
 **Interacting with WebBrowser** 
    - `click()`
