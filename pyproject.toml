@@ -14,7 +14,6 @@ requires-python = ">=3.7"
 dependencies = [
     "selenium",
     "python-dotenv",
-    "click",
     "requests",
     "psutil",
     "pyyaml"
@@ -34,6 +33,3 @@ classifiers = [
 [project.urls]
 "Homepage" = "https://github.com/ivpel/vigilant"
 "Bug Tracker" = "https://github.com/ivpel/vigilant/issues"
-
-[project.scripts]
-vgl = "vgl_cli.vgl:vgl"
