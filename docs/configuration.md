@@ -16,8 +16,10 @@ Vigilant can be configured with the following options:
 **SELENIUM_HOST**
 
 - Description: The Selenium server host URL.
-- YAML Path: selenium-configuration.SELENIUM_HOST
+- YAML Path: vgl-configuration.SELENIUM_HOST
 - Example: SELENIUM_HOST: http://127.0.0.1:4444/wd/hub
+
+When use **SELENIUM_HOST**: local - local installed browser will be used.
 
 **SELENIUM_BROWSER**
 
@@ -42,24 +44,14 @@ Vigilant can be configured with the following options:
 The configuration file `vgl_config.yaml` should be structured as follows:
 
 ```yaml
-selenium-configuration:
+vgl-configuration:
   BASE_URL: http://www.python.org
   SELENIUM_HOST: http://127.0.0.1:4444/wd/hub
   SELENIUM_BROWSER: firefox
   WAIT_TIMEOUT: 10
   LOGGER_LEVEL: INFO
-test-credentials:
-  file: {credentials_file_name}.yaml
 ```
 You can modify the values in the YAML file to suit your specific configuration requirements.
-
-## Test Credentials
-For secure storage of sensitive information like credentials, the YAML configuration file supports referencing an external file:
-```yaml
-test-credentials:
-  file: {credentials_file_name}.yaml
-```
-Ensure that credentials.yaml is properly secured and not checked into version control.
 
 ## Environment Variables
 Vigilant will automatically load these settings as environment variables at runtime. There's no need to manually set 

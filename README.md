@@ -42,11 +42,6 @@ conditions, and adaptive waiting mechanisms to accommodate different states and 
 And much more! Check list of all available - [Actions](docs/actions.md)
 
 
-Also, CLI scripts included, to make your life easier!
-
-Use `vgl --help` to see all available commands.
-
-
 ## Extending Functionality
 If you need something that is not covered in this library, you still have access to all native `Selenium WebDriver` 
 methods. You can create your own methods or use native `WebDriver` methods and share them on one browser session.
@@ -57,8 +52,6 @@ pip install vigilant-kit
 ```
 
 ## Docs
-### Install
-- [How to install Selenium server & browser drivers](docs/selenium_install.md)
 
 ### Configuration
 - [Vigilant configuration](docs/configuration.md)

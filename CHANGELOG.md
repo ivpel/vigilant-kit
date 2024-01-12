@@ -1,4 +1,15 @@
 # Changelog for Vigilant Kit
+## Version 1.4.0
+
+### Code Refactoring
+- Removed `vgl` CLI.
+- Updated `VigilantDriver` class, now scripts can be run without Selenium server, only using local browser.
+- Updated documentation related to new configuration.
+
+### Dependencies
+
+- Removed pacakge: `click`.
+
 
 ## Version 1.3.0
 

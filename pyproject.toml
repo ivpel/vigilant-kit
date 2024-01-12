@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "vigilant_kit"
-version = "1.3.0"
+version = "1.4.0"
 authors = [
   { name="Pelykh Ivan", email="ivan.pelykh@protonmail.com" },
 ]
@@ -22,7 +22,7 @@ dependencies = [
 keywords = ["testing", "selenium", "webdriver", "pytest", "unittest", "bdd", "tdd", "functional", "functional-testing"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/vigilant", "src/vgl_cli"]
+packages = ["src/vigilant"]
 
 classifiers = [
     "Programming Language :: Python :: 3",
