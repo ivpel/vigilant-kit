@@ -1,8 +1,6 @@
-selenium-configuration:
+vgl-configuration:
   BASE_URL: http://www.python.org
-  SELENIUM_HOST: local #http://127.0.0.1:4444/wd/hub
+  SELENIUM_HOST: http://127.0.0.1:4444/wd/hub
   SELENIUM_BROWSER: firefox
   WAIT_TIMEOUT: 10
   LOGGER_LEVEL: INFO
-test-credentials:
-  file: credentials.yaml
