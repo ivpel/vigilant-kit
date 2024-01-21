@@ -1,4 +1,11 @@
 # Changelog for Vigilant Kit
+## Version 1.4.1
+
+### Code Refactoring
+- Split methods for accessing pages: `get_relative_page()` (if **BASE_URL** is used) and 
+`get_page()` if **BASE_URL** is not used.
+
+
 ## Version 1.4.0
 
 ### Code Refactoring
