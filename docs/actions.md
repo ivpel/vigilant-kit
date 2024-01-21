@@ -24,6 +24,7 @@
 - [get_all_cookies](#get_all_cookies)
 - [get_base_url](#get_base_url)
 - [get_cookie](#get_cookie)
+- [get_page](#get_page)
 - [get_page_title](#get_page_title)
 - [get_text_from_element](#get_text_from_element)
 - [get_timeout](#get_timeout)
@@ -71,7 +72,7 @@
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 234)
+# src/vigilant/actions/vigilant_actions.py (line 245)
 def accept_alert(self) -> return_type:
     """
         Accepts the alert.
@@ -112,7 +113,7 @@ def by_xpath_or_css(self, selector: str) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 433)
+# src/vigilant/actions/vigilant_actions.py (line 446)
 def clear_field(self, selector) -> return_type:
     """
         Clears a field after it becomes visible.
@@ -133,7 +134,7 @@ def clear_field(self, selector) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 268)
+# src/vigilant/actions/vigilant_actions.py (line 279)
 def click(self, selector) -> return_type:
     """
         Clicks on an element after it becomes visible.
@@ -155,7 +156,7 @@ def click(self, selector) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 255)
+# src/vigilant/actions/vigilant_actions.py (line 266)
 def click_with_delay(self, selector, delay=2) -> return_type:
     """
         Clicks on an element only after it becomes visible and adds an additional delay before click.
@@ -176,7 +177,7 @@ def click_with_delay(self, selector, delay=2) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 47)
+# src/vigilant/actions/vigilant_actions.py (line 58)
 def close(self) -> return_type:
     """
         Closes the current window.
@@ -196,7 +197,7 @@ def close(self) -> return_type:
         
 
 ```python
-# src/vigilant/actions/assertions.py (line 29)
+# src/vigilant/actions/assertions.py (line 31)
 def count_elements(self, selector: str) -> return_type:
     """
         Count all elements that match the provided selector, visible or not.
@@ -216,7 +217,7 @@ def count_elements(self, selector: str) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 152)
+# src/vigilant/actions/vigilant_actions.py (line 163)
 def delete_all_cookies(self) -> return_type:
     """
         Deletes all cookies in the scope of the session.
@@ -236,7 +237,7 @@ def delete_all_cookies(self) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 162)
+# src/vigilant/actions/vigilant_actions.py (line 173)
 def delete_cookie(self, cookie_to_delete) -> return_type:
     """
         Deletes a specific cookie.
@@ -256,7 +257,7 @@ def delete_cookie(self, cookie_to_delete) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 224)
+# src/vigilant/actions/vigilant_actions.py (line 235)
 def dismiss_alert(self) -> return_type:
     """
         Dismisses the alert.
@@ -275,7 +276,7 @@ def dismiss_alert(self) -> return_type:
         
 
 ```python
-# src/vigilant/actions/assertions.py (line 41)
+# src/vigilant/actions/assertions.py (line 43)
 def dont_see(self, selectors: [str | list]) -> return_type:
     """
         Assert that none of the elements matching the provided selectors are visible.
@@ -294,7 +295,7 @@ def dont_see(self, selectors: [str | list]) -> return_type:
         
 
 ```python
-# src/vigilant/actions/assertions.py (line 67)
+# src/vigilant/actions/assertions.py (line 69)
 def dont_see_in_current_url(self, search_key: str) -> return_type:
     """
         Assert that the provided search key is not present in the current page URL.
@@ -313,7 +314,7 @@ def dont_see_in_current_url(self, search_key: str) -> return_type:
         
 
 ```python
-# src/vigilant/actions/assertions.py (line 57)
+# src/vigilant/actions/assertions.py (line 59)
 def dont_see_in_title(self, search_key: str) -> return_type:
     """
         Assert that the provided search key is not present in the current page title.
@@ -334,7 +335,7 @@ def dont_see_in_title(self, search_key: str) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 140)
+# src/vigilant/actions/vigilant_actions.py (line 151)
 def execute_async_js_script(self, js_script, arguments=None) -> return_type:
     """
         Executes an asynchronous JavaScript script with optional arguments.
@@ -357,7 +358,7 @@ def execute_async_js_script(self, js_script, arguments=None) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 128)
+# src/vigilant/actions/vigilant_actions.py (line 139)
 def execute_js_script(self, js_script, arguments=None) -> return_type:
     """
         Executes a JavaScript script with optional arguments.
@@ -380,7 +381,7 @@ def execute_js_script(self, js_script, arguments=None) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 317)
+# src/vigilant/actions/vigilant_actions.py (line 330)
 def fill_field(self, selector, value) -> return_type:
     """
         Fills a field with a specified value after the field becomes visible.
@@ -402,7 +403,7 @@ def fill_field(self, selector, value) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 330)
+# src/vigilant/actions/vigilant_actions.py (line 343)
 def fill_form(self, selector_data) -> return_type:
     """
         Fills multiple fields in a form using a dictionary of selectors and values.
@@ -504,7 +505,7 @@ def find_multiply_by_xpath(self, selector: str) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 182)
+# src/vigilant/actions/vigilant_actions.py (line 193)
 def get_all_cookies(self) -> return_type:
     """
         Returns a set of dictionaries corresponding to cookies visible in the current session.
@@ -543,12 +544,53 @@ def get_base_url() -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 192)
+# src/vigilant/actions/vigilant_actions.py (line 203)
 def get_cookie(self, cookie) -> return_type:
     """
         Gets a single cookie.
 
         :param cookie: The name of the cookie to retrieve
+        :return: self
+        """
+    # Function code goes here
+```
+## get_relative_page
+
+
+        Opens the page by the URL relative to the one set in the BASE_URL configuration variable.
+
+        :param url: A path to the page.
+        :return: self
+        
+
+```python
+# src/vigilant/actions/vigilant_actions.py (line 36)
+    def get_relative_page(self, url):
+        """
+        Opens the page by the URL relative to the one set in the BASE_URL configuration variable.
+
+        :param url: A path to the page relative to the BASE_URL
+        :return: self
+        """
+    # Function code goes here
+```
+
+## get_page
+
+
+        Opens the page by the URL without relation to any configuration.
+
+        :param url: A path to the page.
+        :return: self
+        
+
+```python
+# src/vigilant/actions/vigilant_actions.py (line 47)
+def get_page(self, url) -> return_type:
+    """
+        Opens the page by the URL without relation to any configuration.
+
+        :param url: A path to the page.
         :return: self
         """
     # Function code goes here
@@ -563,7 +605,7 @@ def get_cookie(self, cookie) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 97)
+# src/vigilant/actions/vigilant_actions.py (line 108)
 def get_page_title(self) -> return_type:
     """
         Returns the title of the current page.
@@ -583,7 +625,7 @@ def get_page_title(self) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 306)
+# src/vigilant/actions/vigilant_actions.py (line 319)
 def get_text_from_element(self, selector) -> return_type:
     """
         Gets the text from an element after it becomes visible.
@@ -624,7 +666,7 @@ def get_timeout() -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 106)
+# src/vigilant/actions/vigilant_actions.py (line 117)
 def maximize_window(self) -> return_type:
     """
         Maximizes the current window that the WebDriver is using.
@@ -644,7 +686,7 @@ def maximize_window(self) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 344)
+# src/vigilant/actions/vigilant_actions.py (line 357)
 def move_mouse_on_element(self, selector) -> return_type:
     """
         Moves the mouse cursor over an element after the element becomes visible.
@@ -664,7 +706,7 @@ def move_mouse_on_element(self, selector) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 287)
+# src/vigilant/actions/vigilant_actions.py (line 299)
 def open_new_tab(self) -> return_type:
     """
         Opens a new tab and switches to it
@@ -683,7 +725,7 @@ def open_new_tab(self) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 279)
+# src/vigilant/actions/vigilant_actions.py (line 290)
 def open_new_window(self) -> return_type:
     """
         Opens a new window and switches to new window
@@ -702,7 +744,7 @@ def open_new_window(self) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 67)
+# src/vigilant/actions/vigilant_actions.py (line 78)
 def page_back(self) -> return_type:
     """
         Goes one step backward in the browser history.
@@ -721,7 +763,7 @@ def page_back(self) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 77)
+# src/vigilant/actions/vigilant_actions.py (line 88)
 def page_forward(self) -> return_type:
     """
         Goes one step forward in the browser history.
@@ -740,7 +782,7 @@ def page_forward(self) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 87)
+# src/vigilant/actions/vigilant_actions.py (line 98)
 def page_refresh(self) -> return_type:
     """
         Refreshes the current page.
@@ -760,7 +802,7 @@ def page_refresh(self) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 357)
+# src/vigilant/actions/vigilant_actions.py (line 370)
 def press_key(self, key) -> return_type:
     """
         Presses a specified key.
@@ -780,7 +822,7 @@ def press_key(self, key) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 57)
+# src/vigilant/actions/vigilant_actions.py (line 68)
 def quit(self) -> return_type:
     """
         Quits the driver and closes every associated window.
@@ -801,7 +843,7 @@ def quit(self) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 116)
+# src/vigilant/actions/vigilant_actions.py (line 127)
 def resize_window(self, width, height) -> return_type:
     """
         Sets the current window width and height.
@@ -823,7 +865,7 @@ def resize_window(self, width, height) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 295)
+# src/vigilant/actions/vigilant_actions.py (line 308)
 def scroll_to(self, selector) -> return_type:
     """
         Scrolls to an element.
@@ -843,7 +885,7 @@ def scroll_to(self, selector) -> return_type:
         
 
 ```python
-# src/vigilant/actions/assertions.py (line 77)
+# src/vigilant/actions/assertions.py (line 79)
 def see(self, selectors: [str | list]) -> return_type:
     """
         Assert that at least one of the elements matching the provided selectors is visible.
@@ -862,7 +904,7 @@ def see(self, selectors: [str | list]) -> return_type:
         
 
 ```python
-# src/vigilant/actions/assertions.py (line 104)
+# src/vigilant/actions/assertions.py (line 106)
 def see_at_least_one(self, selector) -> return_type:
     """
         Assert that at least one element matching the provided selector is visible.
@@ -882,7 +924,7 @@ def see_at_least_one(self, selector) -> return_type:
         
 
 ```python
-# src/vigilant/actions/assertions.py (line 93)
+# src/vigilant/actions/assertions.py (line 95)
 def see_elements_in_quantity_of(self, selector: str, qty: int) -> return_type:
     """
         Assert that the number of visible elements that match the provided selector is equal to the provided quantity.
@@ -902,7 +944,7 @@ def see_elements_in_quantity_of(self, selector: str, qty: int) -> return_type:
         
 
 ```python
-# src/vigilant/actions/assertions.py (line 114)
+# src/vigilant/actions/assertions.py (line 116)
 def see_in_title(self, search_key) -> return_type:
     """
         Assert that the provided search key is present in the current page title.
@@ -921,7 +963,7 @@ def see_in_title(self, search_key) -> return_type:
         
 
 ```python
-# src/vigilant/actions/assertions.py (line 124)
+# src/vigilant/actions/assertions.py (line 126)
 def see_in_url(self, search_key: str) -> return_type:
     """
         Assert that the provided search key is present in the current page URL.
@@ -940,7 +982,7 @@ def see_in_url(self, search_key: str) -> return_type:
         
 
 ```python
-# src/vigilant/actions/assertions.py (line 134)
+# src/vigilant/actions/assertions.py (line 136)
 def see_text(self, text) -> return_type:
     """
         Assert that the provided text is present on the current page.
@@ -961,7 +1003,7 @@ def see_text(self, text) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 369)
+# src/vigilant/actions/vigilant_actions.py (line 382)
 def send_keys(self, selector, keys) -> return_type:
     """
         Sends keys to a specified field.
@@ -982,7 +1024,7 @@ def send_keys(self, selector, keys) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 173)
+# src/vigilant/actions/vigilant_actions.py (line 184)
 def set_cookie(self, cookie_name: dict) -> return_type:
     """
         Sets a new cookie.
@@ -1023,7 +1065,7 @@ def strict_wait(self, seconds: int) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 381)
+# src/vigilant/actions/vigilant_actions.py (line 394)
 def submit_form(self, selector) -> return_type:
     """
         Submits a form using a specified selector.
@@ -1043,7 +1085,7 @@ def submit_form(self, selector) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 214)
+# src/vigilant/actions/vigilant_actions.py (line 225)
 def switch_to_default(self) -> return_type:
     """
         Switches the WebDriver focus to the default frame.
@@ -1063,7 +1105,7 @@ def switch_to_default(self) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 203)
+# src/vigilant/actions/vigilant_actions.py (line 214)
 def switch_to_frame(self, frame_id) -> return_type:
     """
         Switches the WebDriver focus to the specified frame.
@@ -1083,7 +1125,7 @@ def switch_to_frame(self, frame_id) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 392)
+# src/vigilant/actions/vigilant_actions.py (line 405)
 def switch_to_next_tab(self) -> return_type:
     """
         Switch to the next tab
@@ -1102,7 +1144,7 @@ def switch_to_next_tab(self) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 405)
+# src/vigilant/actions/vigilant_actions.py (line 418)
 def switch_to_previous_tab(self) -> return_type:
     """
         Switch to the previous tab
@@ -1122,7 +1164,7 @@ def switch_to_previous_tab(self) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 418)
+# src/vigilant/actions/vigilant_actions.py (line 431)
 def switch_to_window(self, window_name: str) -> return_type:
     """
         Switch to the window identify by window name(title).
@@ -1143,7 +1185,7 @@ def switch_to_window(self, window_name: str) -> return_type:
         
 
 ```python
-# src/vigilant/actions/vigilant_actions.py (line 244)
+# src/vigilant/actions/vigilant_actions.py (line 255)
 def type_in_alert(self, value) -> return_type:
     """
         Types the specified value in the alert.

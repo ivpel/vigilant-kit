@@ -33,7 +33,7 @@ class VigilantActions:
         self.finder: Finder = Finder(self.driver)
         self.waiter: Waiter = Waiter(self.driver, self.finder)
 
-    def get_page(self, url):
+    def get_relative_page(self, url):
         """
         Opens the page by the URL relative to the one set in the BASE_URL configuration variable.
 
@@ -42,6 +42,17 @@ class VigilantActions:
         """
         log.info(f'Getting page: {url}')
         self.driver.get(get_base_url() + url)
+        return self
+
+    def get_page(self, url):
+        """
+        Opens the page by the URL without relation to any configuration.
+
+        :param url: A path to the page.
+        :return: self
+        """
+        log.info(f'Getting page: {url}')
+        self.driver.get(url)
         return self
 
     def close(self):
