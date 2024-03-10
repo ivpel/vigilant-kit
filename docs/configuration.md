@@ -9,35 +9,36 @@ Vigilant can be configured with the following options:
 
 **BASE_URL**
 
-- Description: The base URL of the website to be tested.
-- YAML Path: selenium-configuration.BASE_URL
-- Example: BASE_URL: http://www.python.org
+- **Description**: The base URL of the website to be tested.
+- **YAML Path**: selenium-configuration.BASE_URL
+- **Example**: `BASE_URL: http://www.python.org`
 
 **SELENIUM_HOST**
 
-- Description: The Selenium server host URL.
-- YAML Path: vgl-configuration.SELENIUM_HOST
-- Example: SELENIUM_HOST: http://127.0.0.1:4444/wd/hub
+- **Description**: The Selenium server host URL.
+- **YAML Path**: vgl-configuration.SELENIUM_HOST
+- **Example**: SELENIUM_HOST: http://127.0.0.1:4444/wd/hub
 
-When use **SELENIUM_HOST**: local - local installed browser will be used.
+When use `SELENIUM_HOST: local` - local installed browser will be used. This is recomended
+way to use for development purposes.
 
 **SELENIUM_BROWSER**
 
-- Description: The browser to be used for testing.
-- YAML Path: selenium-configuration.SELENIUM_BROWSER
-- Example: SELENIUM_BROWSER: firefox
+- **Description**: The browser to be used for testing.
+- **YAML Path**: selenium-configuration.SELENIUM_BROWSER
+- **Example**: `SELENIUM_BROWSER: firefox`
 
 **WAIT_TIMEOUT**
 
-- Description: The timeout duration (in seconds) for wait operations.
-- YAML Path: selenium-configuration.WAIT_TIMEOUT
-- Example: WAIT_TIMEOUT: 10
+- **Description**: The timeout duration (in seconds) for wait operations.
+- **YAML Path**: selenium-configuration.WAIT_TIMEOUT
+- **Example**: `WAIT_TIMEOUT: 10`
 
 **LOGGER_LEVEL**
 
-- Description: The logging level for Vigilant.
-- YAML Path: selenium-configuration.LOGGER_LEVEL
-- Example: LOGGER_LEVEL: INFO
+- **Description**: The logging level for Vigilant.
+- **YAML Path**: selenium-configuration.LOGGER_LEVEL
+- **Example**: `LOGGER_LEVEL: INFO`
 
 ## Configuration File
 
@@ -46,7 +47,7 @@ The configuration file `vgl_config.yaml` should be structured as follows:
 ```yaml
 vgl-configuration:
   BASE_URL: http://www.python.org
-  SELENIUM_HOST: http://127.0.0.1:4444/wd/hub
+  SELENIUM_HOST: http://127.0.0.1:4444/wd/hub # Or `local` to use localy installed browser
   SELENIUM_BROWSER: firefox
   WAIT_TIMEOUT: 10
   LOGGER_LEVEL: INFO

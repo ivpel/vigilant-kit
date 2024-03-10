@@ -1,6 +1,6 @@
 # Vigilant Kit
-Vigilant is a set of tools designed to help write and run robust functional tests using Selenium WebDriver. With 
-Vigilant, you can start writing complex test cases in a minute.
+**Vigilant** is a set of tools designed to help write and run robust functional tests using Selenium WebDriver. With 
+**Vigilant**, you can start writing complex test cases in a minute.
 
 ## Why Vigilant?
 * **Easy to start & Fast To Write**: Vigilant provides you with methods that help you write functional tests quickly 
@@ -17,14 +17,16 @@ without spending time on writing boilerplate code every time you start a new pro
 Vigilant provide a suite of methods designed for efficient browser interaction, robust assertion of various 
 conditions, and adaptive waiting mechanisms to accommodate different states and conditions.
 
-**Interacting with WebBrowser** 
-   - `click()`
-   - `scroll_to()`
-   - `fill_form()`
-   - `move_mouse_on_element()`
+### **Interacting with WebBrowser** 
+   - `click()` - click on element when it visible and scrolled in to the view;
+   - `scroll_to()` - easy scroll to the element when necessary;
+   - `fill_form()` - fill form with many fields without repetitive;
+   - `switch_to_window()` - work with multiply browser windows without any issues;
    - ...
 
-**Assertions** 
+### **Assertions** - included! 
+
+Their names speak for themselves
    - `see()`
    - `dont_see()`
    - `see_text()`
@@ -32,7 +34,9 @@ conditions, and adaptive waiting mechanisms to accommodate different states and 
    - ...
 
 
-**Waiters** 
+### **Waiters** 
+
+Waiting conditions are already here!
    - `wait_for_element_to_be_visible()`
    - `wait_for_element_to_be_clickable()`
    - `wait_for_text_to_be_present_in_element()`
