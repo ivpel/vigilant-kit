@@ -1,4 +1,18 @@
 # Changelog for Vigilant Kit
+
+### [Logic behind Changelog](docs/changelog_logic.md)
+
+## Version 1.4.2
+
+### Code refactor & New methods
+
+- Refactor `click()` - wait until visible, scroll and then click.
+- Added new action `instant_click()` - click on element without any conditions.
+- Added new action `scroll_to_the_to_of_page()` - scrolling to the top of the page.
+- Added new assertion `see_text_in_dom()` - assert that text is presented in the DOM tree.
+- Added doc with description of logic behind the CHANGELOG file.
+
+
 ## Version 1.4.1
 
 ### Code Refactoring

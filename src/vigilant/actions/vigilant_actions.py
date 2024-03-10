@@ -278,14 +278,26 @@ class VigilantActions:
 
     def click(self, selector):
         """
-        Clicks on an element after it becomes visible.
+        Clicks on an element after it becomes visible and scrolled in to the view.
 
         :param selector: The element to click on
         :return: self
         """
         self.waiter.wait_for_element_to_be_visible(selector)
+        self.scroll_to(selector)
         log.info(f'Clicking on element: {selector}')
         self.finder.find(selector).click()
+
+    def instant_click(self, selector):
+        """
+        Instant clicks on an element without any conditions.
+
+        :param selector: The element to click on
+        :return: self
+        """
+        log.info(f'Clicking on element: {selector}')
+        self.finder.find(selector).click()
+
 
     def open_new_window(self):
         """
@@ -315,6 +327,15 @@ class VigilantActions:
         target = self.finder.find(selector)
         log.info(f'Scrolling to element: {selector}')
         self.execute_js_script('arguments[0].scrollIntoView({block: "center"})', target)
+
+    def scroll_to_the_top_of_page(self):
+        """
+        Scroll to the top of the page.
+
+        :return:
+        """
+        log.info(f'Scrolling to the top of the page.')
+        self.execute_js_script("window.scrollTo(0, 0);")
 
     def get_text_from_element(self, selector):
         """

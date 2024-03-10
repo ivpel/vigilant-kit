@@ -76,7 +76,16 @@ class Assertions:
         assert search_key not in self.driver.current_url, \
             f"{RED}String {search_key} expected to to be missing in current page URL, but it appear{RESET}"
 
-    def see(self, selectors: [str | list]) -> None:
+    def see_text_in_dom(self, text_in_dom):
+        """
+        Assert that page DOM contains text.
+        :param text_in_dom:
+        :return:
+        """
+        log.info(f"Assert: see string {text_in_dom} in current page DOM")
+        assert text_in_dom in self.driver.page_source
+
+    def see_element(self, selectors: [str | list]) -> None:
         """
         Assert that at least one of the elements matching the provided selectors is visible.
 
