@@ -265,7 +265,7 @@ class VigilantActions:
 
     def click_with_delay(self, selector, delay=2):
         """
-        Clicks on an element only after it becomes visible and adds an additional delay before click.
+        Clicks on an element only after it becomes visible and adds a delay before click.
 
         :param selector: The element to click on
         :param delay: The additional delay in seconds (default is 2)
