@@ -34,7 +34,7 @@ class VigilantActions:
         self.assertions: Assertions = Assertions(self.driver)
         self.finder: Finder = Finder(self.driver)
         self.waiter: Waiter = Waiter(self.driver, self.finder)
-        self.scrapper: DataSaver = DataSaver()
+        self.data_saver: DataSaver = DataSaver()
 
     def get_relative_page(self, url):
         """
