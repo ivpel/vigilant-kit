@@ -20,7 +20,7 @@ class Finder:
         :param selector: XPATH or CSS selector string
         :return: tuple with search pattern (XPATH or CSS) and searched selector
         """
-        if selector.startswith('//'):
+        if selector.startswith('//') or selector.startswith('('):
             return By.XPATH, selector
         else:
             return By.CSS_SELECTOR, selector

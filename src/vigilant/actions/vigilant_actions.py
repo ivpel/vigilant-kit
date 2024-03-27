@@ -2,10 +2,12 @@ import os
 
 from selenium.webdriver import Remote
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.by import By
 
 from vigilant.actions.assertions import Assertions
 from vigilant.actions.finder import Finder
 from vigilant.actions.waiter import Waiter
+from vigilant.actions.data_saver import DataSaver
 from vigilant.logger import logger as log
 
 
@@ -32,6 +34,7 @@ class VigilantActions:
         self.assertions: Assertions = Assertions(self.driver)
         self.finder: Finder = Finder(self.driver)
         self.waiter: Waiter = Waiter(self.driver, self.finder)
+        self.scrapper: DataSaver = DataSaver()
 
     def get_relative_page(self, url):
         """
@@ -347,6 +350,18 @@ class VigilantActions:
         self.waiter.wait_for_element_to_be_visible(selector)
         log.info(f'Getting text from element: {selector}')
         return self.finder.find(selector).text
+
+    def get_attribute_from_element(self, selector, attribute_name):
+        """
+        Gets the text from an element after it becomes visible.
+
+        :param attribute_name:
+        :param selector: The element to get text from
+        :return: The text of the element
+        """
+        self.waiter.wait_for_element_to_be_visible(selector)
+        log.info(f'Getting text from element: {selector}')
+        return self.finder.find(selector).get_attribute(attribute_name)
 
     def fill_field(self, selector, value):
         """
