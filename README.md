@@ -3,30 +3,34 @@
 **Vigilant**, you can start writing complex test cases in a minute.
 
 ## Why Vigilant?
-* **Easy to start & Fast To Write**: Vigilant provides you with methods that help you write functional tests quickly 
-without spending time on writing boilerplate code every time you start a new project.
-* **No limit in usage**: You are not limited to a single testing framework; you can use Vigilant with **unittest**,
-  **pytest**, or for **scrapping data**. It's just a tool, use it as you want.
+* **Easy to start & Fast To Write**: All methods for interaction, waiting different conditions and asserting the results
+are already here.
+* **No limits**: You are not limited to a single testing framework, use Vigilant with **unittest**,
+  **pytest**, or for **scrapping data**. 
 * **Stability**: We use Selenium WebDriver. It is a **W3C standard**.
-   - WebDriver drives a browser natively, as a user would, either locally or on a remote machine using the Selenium server.
-   - WebDriver is designed as a simple and more concise programming interface.
-   - WebDriver is a compact object-oriented API.
-   - It drives the browser effectively.
 
-## What it includes?
-Vigilant provide a suite of methods designed for efficient browser interaction, robust assertion of various 
-conditions, and adaptive waiting mechanisms to accommodate different states and conditions.
 
-### **Interacting with WebBrowser** 
+## What included?
+_Wait for condition, Act by Interaction, Assert the result._
+
+
+### **Actions** 
    - `click()` - click on element when it visible and scrolled in to the view;
    - `scroll_to()` - easy scroll to the element when necessary;
    - `fill_form()` - fill form with many fields without repetitive;
    - `switch_to_window()` - work with multiply browser windows without any issues;
    - ...
 
-### **Assertions** - included! 
+### **Waiters for condition** 
 
-Their names speak for themselves
+   - `wait_for_element_to_be_visible()`
+   - `wait_for_element_to_be_clickable()`
+   - `wait_for_text_to_be_present_in_element()`
+   - `wait_for_element_to_disappear()`
+   - ...
+
+### **Assertions** 
+
    - `see()`
    - `dont_see()`
    - `see_text()`
@@ -34,14 +38,14 @@ Their names speak for themselves
    - ...
 
 
-### **Waiters** 
 
-Waiting conditions are already here!
-   - `wait_for_element_to_be_visible()`
-   - `wait_for_element_to_be_clickable()`
-   - `wait_for_text_to_be_present_in_element()`
-   - `wait_for_element_to_disappear()`
-   - ...
+
+### **Scrappers**
+Minimal required methods for scrapping some data:
+  - `get_text_from_element()`
+  - `get_attribute_from_element()`
+  - `get_cookie()`
+  - `save_data_to_txt()`
 
 And much more! Check list of all available - [Actions](docs/actions.md)
 
