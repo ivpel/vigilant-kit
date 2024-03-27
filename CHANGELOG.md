@@ -2,6 +2,14 @@
 
 ### [Logic behind Changelog](docs/changelog_logic.md)
 
+## Version 1.4.3
+
+### Code refactor & New methods
+
+- Refactor `by_xpath_or_css()` - so it can detect positional selectors.
+- Added new method `save_data_to_txt()` - can be used to write different data in to .txt file.
+
+
 ## Version 1.4.2
 
 ### Code refactor & New methods
