@@ -16,7 +16,8 @@ dependencies = [
     "python-dotenv",
     "requests",
     "psutil",
-    "pyyaml"
+    "pyyaml",
+    "PyMuPDF"
 ]
 
 keywords = ["testing", "selenium", "webdriver", "pytest", "unittest", "bdd", "tdd", "functional", "functional-testing"]
