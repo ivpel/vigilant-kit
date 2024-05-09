@@ -8,6 +8,7 @@ from vigilant.actions.assertions import Assertions
 from vigilant.actions.finder import Finder
 from vigilant.actions.waiter import Waiter
 from vigilant.actions.data_saver import DataSaver
+from vigilant.actions.vigilant_pdf import VigilantPDF
 from vigilant.logger import logger as log
 
 
@@ -35,6 +36,7 @@ class VigilantActions:
         self.finder: Finder = Finder(self.driver)
         self.waiter: Waiter = Waiter(self.driver, self.finder)
         self.data_saver: DataSaver = DataSaver()
+        self.vgl_pdf: VigilantPDF = VigilantPDF()
 
     def get_relative_page(self, url):
         """
