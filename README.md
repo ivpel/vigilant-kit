@@ -15,10 +15,10 @@ _Wait for condition, Act by Interaction, Assert the result._
 
 
 ### **Actions** 
-   - `click()` - click on element when it visible and scrolled in to the view;
-   - `scroll_to()` - easy scroll to the element when necessary;
-   - `fill_form()` - fill form with many fields without repetitive;
-   - `switch_to_window()` - work with multiply browser windows without any issues;
+   - `click()`
+   - `scroll_to()`
+   - `fill_form()`
+   - `switch_to_window()`
    - ...
 
 ### **Waiters for condition** 
@@ -46,6 +46,14 @@ Minimal required methods for scrapping some data:
   - `get_attribute_from_element()`
   - `get_cookie()`
   - `save_data_to_txt()`
+
+### **Test PDF**
+You're testing some eCommerce project, and you need to check your PDF invoice file? No problem!
+   - `find_pdf_file()`,
+   - `assert_strings_in_pdf()`,
+   - `assert_strings_not_in_pdf()`,
+   - `find_file_and_assert_strings_are_in()`,
+   - ...
 
 And much more! Check list of all available - [Actions](docs/actions.md)
 
