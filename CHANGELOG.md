@@ -2,6 +2,26 @@
 
 ### [Logic behind Changelog](docs/changelog_logic.md)
 
+## Version 1.4.4
+
+### Code refactor & New features
+
+- Added new class that allows to test PDF files `VigilantPDF`
+- Added new method `find_pdf_file()` - find PDF files that match a given regex pattern within the specified directory.
+- Added new method `assert_strings_are_in_file()` - assert that all strings in the list are found in the specified PDF files.
+- Added new method `assert_strings_are_not_in_file()` - assert that none of the strings in the list are found in the specified PDF files.
+- Added new method `assert_strings_in_pdf()` - check if all strings in the list are present in the specified PDF file.
+- Added new method `assert_strings_not_in_pdf()` - check if none of the strings in the list are present in the specified PDF file.
+- Added new method `delete_pdf_file()` - find and delete all PDF files that follow the specified regex pattern.
+- Added new method `find_file_and_assert_strings_are_in()` - find PDF files and ensure the specified strings are present in each.
+- Added new method `find_file_and_assert_strings_are_not_in()` - find PDF files and ensure the specified strings are not present in any of them.
+
+### Dependencies
+
+- Removed pacakge: `python-dotenv`.
+- Removed pacakge: `requests`.
+- Removed pacakge: `psutil`.
+
 ## Version 1.4.3
 
 ### Code refactor & New methods
