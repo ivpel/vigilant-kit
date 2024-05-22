@@ -2,6 +2,12 @@
 
 ### [Logic behind Changelog](docs/changelog_logic.md)
 
+## Version 1.4.5
+
+### Code refactor 
+
+- Refactored class `VigilantDriver()`, refactored methods for creating driver sessions, added docstrings.
+
 ## Version 1.4.4
 
 ### Code refactor & New features
