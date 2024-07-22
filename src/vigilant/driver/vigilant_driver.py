@@ -3,7 +3,6 @@ from selenium import webdriver
 from vigilant.actions.vigilant_actions import VigilantActions
 from vigilant.logger import logger as log
 
-
 class VigilantDriver(VigilantActions):
     """
     Custom web driver for automated browser interactions.
@@ -17,18 +16,20 @@ class VigilantDriver(VigilantActions):
         create_driver_session: Creates a Selenium driver session (local or remote).
     """
 
-    SELENIUM_HOST = os.environ.get("SELENIUM_HOST")
-    SELENIUM_BROWSER = os.environ.get("SELENIUM_BROWSER")
-
-    def __init__(self):
+    def __init__(self, browser_options=None, selenium_browser=None, selenium_host=None):
         """
         Initializes the VigilantDriver with the specified browser and host settings.
         Raises a ValueError if SELENIUM_BROWSER is not set or if the specified browser is unsupported.
         """
+        self.SELENIUM_BROWSER = selenium_browser or os.environ.get("SELENIUM_BROWSER")
+        self.SELENIUM_HOST = selenium_host or os.environ.get("SELENIUM_HOST")
+
         if not self.SELENIUM_BROWSER:
             raise ValueError("SELENIUM_BROWSER environment variable is not set")
 
-        browser_options = self.default_browser_options()
+        if browser_options is None:
+            browser_options = self.default_browser_options()
+
         if self.SELENIUM_HOST in ["local", None, ""]:
             self.driver = self.create_driver_session(browser_options)
         else:
