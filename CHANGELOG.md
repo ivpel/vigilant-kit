@@ -2,6 +2,13 @@
 
 ### [Logic behind Changelog](docs/changelog_logic.md)
 
+## Version 1.4.6
+
+### Code refactor
+- Fixed `VigilantDriver()` class to accept custom browser options, browser type, and host settings during instantiation.
+- Modified `VigilantDriver.__init__()` to accept optional parameters for browser_options, selenium_browser, and selenium_host.
+- Updated methods `default_browser_options()` and `create_driver_session()` to accommodate new initialization parameters.
+
 ## Version 1.4.5
 
 ### Code refactor 
