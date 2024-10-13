@@ -1,5 +1,5 @@
 # Vigilant Kit
-**Vigilant** is a set of tools designed to help write and run robust functional tests using Selenium WebDriver. With 
+**Vigilant** is a library designed to help write and run robust functional tests using Selenium WebDriver. With 
 **Vigilant**, you can start writing complex test cases in a minute.
 
 ## Why Vigilant?
@@ -7,11 +7,10 @@
 are already here.
 * **No limits**: You are not limited to a single testing framework, use Vigilant with **unittest**,
   **pytest**, or for **scrapping data**. 
-* **Stability**: We use Selenium WebDriver. It is a **W3C standard**.
-
+* **Stability**: We use Selenium WebDriver. **W3C standard**.
 
 ## What included?
-_Wait for condition, Act by Interaction, Assert the result._
+_Wait, Act, Assert_
 
 
 ### **Actions** 
