@@ -2,6 +2,14 @@
 
 ### [Logic behind Changelog](docs/changelog_logic.md)
 
+## Version 1.5.0
+
+### Code refactor
+- Name of core configuration file was changed, from `vgl_config.yaml` to `vgl.yaml`
+- Methods for interacting with URLs have been renamed to more fully reflect what they actually do.
+  - `get_page()` - now used for navigation through paths relative to BASE_URL
+  - `go_to()` - opens the page by the URL without relation to any configuration.
+
 ## Version 1.4.6
 
 ### Code refactor

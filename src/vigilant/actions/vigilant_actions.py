@@ -38,7 +38,7 @@ class VigilantActions:
         self.data_saver: DataSaver = DataSaver()
         self.vgl_pdf: VigilantPDF = VigilantPDF()
 
-    def get_relative_page(self, url):
+    def get_page(self, url):
         """
         Opens the page by the URL relative to the one set in the BASE_URL configuration variable.
 
@@ -49,14 +49,14 @@ class VigilantActions:
         self.driver.get(get_base_url() + url)
         return self
 
-    def get_page(self, url):
+    def go_to(self, url):
         """
         Opens the page by the URL without relation to any configuration.
 
         :param url: A path to the page.
         :return: self
         """
-        log.info(f'Getting page: {url}')
+        log.info(f'Going by URL: {url}')
         self.driver.get(url)
         return self
 

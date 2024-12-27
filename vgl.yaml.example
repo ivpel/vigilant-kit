@@ -1,4 +1,4 @@
-vgl-configuration:
+vgl:
   BASE_URL: http://www.python.org
   SELENIUM_HOST: local
   SELENIUM_BROWSER: firefox

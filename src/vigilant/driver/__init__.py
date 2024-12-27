@@ -13,11 +13,11 @@ def set_env_variables_from_yaml(yaml_path):
     with open(yaml_path, 'r') as file:
         configs = yaml.safe_load(file)
 
-    selenium_config = configs.get('vgl-configuration', {})
+    selenium_config = configs.get('vgl', {})
     set_env_variables_from_dict(selenium_config)
 
 
-CONFIG_YAML_FILE = 'vgl_config.yaml'
+CONFIG_YAML_FILE = 'vgl.yaml'
 
 if Path(CONFIG_YAML_FILE).exists():
     print(f"Setting configuration from {CONFIG_YAML_FILE} file.")
