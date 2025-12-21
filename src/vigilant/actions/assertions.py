@@ -23,10 +23,12 @@ class Assertions:
         :return: number of visible elements that match the selector
         """
         try:
-            if self.finder.find(selector).is_displayed():
+            first_match = self.finder.find(selector)
+            if first_match.is_displayed():
                 return len(self.finder.find_multiply(selector))
         except NoSuchElementException:
-            return 0
+            pass
+        return 0
 
     def count_elements(self, selector: str) -> int:
         """
@@ -119,7 +121,7 @@ class Assertions:
         :param selector: CSS selector
         """
         log.info(f"Assert: see at least 1 element with selector {selector}")
-        assert self.count_visible_elements(selector) > 1, \
+        assert self.count_visible_elements(selector) >= 1, \
             f"{RED}Expected quantity of elements with selector {selector} be at least 1, but found {self.count_visible_elements(selector)}{RESET}"
 
     def see_in_title(self, search_key):

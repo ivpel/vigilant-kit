@@ -2,7 +2,6 @@ import os
 
 from selenium.webdriver import Remote
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.by import By
 
 from vigilant.actions.assertions import Assertions
 from vigilant.actions.finder import Finder
@@ -45,8 +44,11 @@ class VigilantActions:
         :param url: A path to the page relative to the BASE_URL
         :return: self
         """
+        base_url = get_base_url()
+        if not base_url:
+            raise ValueError("BASE_URL environment variable is not set; cannot build full URL.")
         log.info(f'Getting page: {url}')
-        self.driver.get(get_base_url() + url)
+        self.driver.get(base_url + url)
         return self
 
     def go_to(self, url):
@@ -199,22 +201,20 @@ class VigilantActions:
         """
         Returns a set of dictionaries corresponding to cookies visible in the current session.
 
-        :return: self
+        :return: list of cookies
         """
         log.info(f'Returns a set of dictionaries, corresponding to cookies visible in the current session')
-        self.driver.get_cookies()
-        return self
+        return self.driver.get_cookies()
 
     def get_cookie(self, cookie):
         """
         Gets a single cookie.
 
         :param cookie: The name of the cookie to retrieve
-        :return: self
+        :return: cookie data
         """
         log.info(f' Get a single cookie: {cookie}')
-        self.driver.get_cookie(cookie)
-        return self
+        return self.driver.get_cookie(cookie)
 
     def switch_to_frame(self, frame_id):
         """
@@ -265,7 +265,7 @@ class VigilantActions:
         :return: self
         """
         log.info(f'Typing in alert: {value}')
-        self.driver.switch_to.alert.text(value)
+        self.driver.switch_to.alert.send_keys(value)
         return self
 
     def click_with_delay(self, selector, delay=2):
@@ -280,6 +280,7 @@ class VigilantActions:
         self.waiter.strict_wait(delay)
         log.info(f'Clicking on element: {selector} with delay: {delay}')
         self.finder.find(selector).click()
+        return self
 
     def click(self, selector):
         """
@@ -292,6 +293,7 @@ class VigilantActions:
         self.scroll_to(selector)
         log.info(f'Clicking on element: {selector}')
         self.finder.find(selector).click()
+        return self
 
     def instant_click(self, selector):
         """
@@ -302,6 +304,7 @@ class VigilantActions:
         """
         log.info(f'Clicking on element: {selector}')
         self.finder.find(selector).click()
+        return self
 
 
     def open_new_window(self):
@@ -312,6 +315,7 @@ class VigilantActions:
         """
         log.info(f'Opening new window')
         self.driver.switch_to.new_window('window')
+        return self
 
     def open_new_tab(self):
         """
@@ -321,6 +325,7 @@ class VigilantActions:
         """
         log.info(f'Opening new tab')
         self.driver.switch_to.new_window('tab')
+        return self
 
     def scroll_to(self, selector):
         """
@@ -332,15 +337,17 @@ class VigilantActions:
         target = self.finder.find(selector)
         log.info(f'Scrolling to element: {selector}')
         self.execute_js_script('arguments[0].scrollIntoView({block: "center"})', target)
+        return self
 
     def scroll_to_the_top_of_page(self):
         """
         Scroll to the top of the page.
 
-        :return:
+        :return: self
         """
         log.info(f'Scrolling to the top of the page.')
         self.execute_js_script("window.scrollTo(0, 0);")
+        return self
 
     def get_text_from_element(self, selector):
         """
@@ -402,7 +409,7 @@ class VigilantActions:
         self.waiter.wait_for_element_to_be_visible(selector)
         element = self.finder.find(selector)
         log.info(f'Moving mouse on element: {selector}')
-        ActionChains(self.driver).move_to_element(element)
+        ActionChains(self.driver).move_to_element(element).perform()
         return self
 
     def press_key(self, key):

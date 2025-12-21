@@ -60,10 +60,10 @@ class Finder:
         :param selector: XPATH or CSS selector string
         :return: list of elements found using the XPATH or CSS selector
         """
-        if selector.startswith('//'):
-            return self.find_multiply_by_xpath(selector)
-        else:
-            return self.find_multiply_by_css(selector)
+        by, value = self.by_xpath_or_css(selector)
+        if by == By.XPATH:
+            return self.find_multiply_by_xpath(value)
+        return self.find_multiply_by_css(value)
 
     def find_by_class(self, selector: str) -> WebElement:
         """

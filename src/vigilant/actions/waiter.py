@@ -9,8 +9,20 @@ from vigilant.actions.finder import Finder
 from vigilant.logger import logger as log
 
 
-def get_timeout():
-    return float(os.environ.get('WAIT_TIMEOUT'))
+def get_timeout(default: float = 10.0) -> float:
+    """
+    Fetch wait timeout from env with a safe default.
+
+    :param default: fallback timeout if WAIT_TIMEOUT is not set
+    :return: timeout in seconds
+    """
+    raw_timeout = os.environ.get('WAIT_TIMEOUT')
+    if raw_timeout is None or raw_timeout == "":
+        return default
+    try:
+        return float(raw_timeout)
+    except ValueError as exc:
+        raise ValueError(f"WAIT_TIMEOUT must be numeric, got: {raw_timeout}") from exc
 
 
 class Waiter:
@@ -79,7 +91,7 @@ class Waiter:
         :param value_text: The text to wait for
         :return: self
         """
-        log.info(f"Waiting for element with selector: {selector} - to disappear.")
+        log.info(f"Waiting for element with selector: {selector} - to contain value: {value_text}.")
         WebDriverWait(driver=self.driver, timeout=get_timeout()).until(
             EC.text_to_be_present_in_element_value(self.finder.by_xpath_or_css(selector), value_text)
         )
@@ -93,7 +105,7 @@ class Waiter:
         :param text: The text to wait for
         :return: self
         """
-        log.info(f"Waiting for element with selector: {selector} - to disappear.")
+        log.info(f"Waiting for element with selector: {selector} - to contain text: {text}.")
         WebDriverWait(driver=self.driver, timeout=get_timeout()).until(
             EC.text_to_be_present_in_element(self.finder.by_xpath_or_css(selector), text)
         )
@@ -107,20 +119,20 @@ class Waiter:
         :param text_in_attribute: The text to wait for
         :return: self
         """
-        log.info(f"Waiting for element with selector: {selector} - to disappear.")
+        log.info(f"Waiting for element with selector: {selector} - to contain attribute text: {text_in_attribute}.")
         WebDriverWait(driver=self.driver, timeout=get_timeout()).until(
             EC.text_to_be_present_in_element_attribute(self.finder.by_xpath_or_css(selector), text_in_attribute)
         )
         return self
 
-    def wait_for_alert_(self, selector: str):
+    def wait_for_alert_(self, selector=None):
         """
         Waits for an alert to be present.
 
-        :param selector: The element's selector
+        :param selector: unused, kept for backward compatibility
         :return: self
         """
-        log.info(f"Waiting for element with selector: {selector} - to disappear.")
+        log.info("Waiting for alert to be present.")
         WebDriverWait(driver=self.driver, timeout=get_timeout()).until(
             EC.alert_is_present()
         )
