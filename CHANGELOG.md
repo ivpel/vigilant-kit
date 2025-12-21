@@ -2,6 +2,15 @@
 
 ### [Logic behind Changelog](docs/changelog_logic.md)
 
+## Version 1.5.1
+
+### Fixes & improvements
+- Added safe default/validation for `WAIT_TIMEOUT`; clarified waiter log messages.
+- Fixed alert typing (`send_keys`), hover execution (`perform`), and restored method chaining/returns for click/scroll/tab/window helpers.
+- Cookie getters now return data instead of `self`; BASE_URL guard added for `get_page`.
+- Expanded XPath detection to selectors starting with `(`.
+- Swapped import-time config side effects for an explicit `load_config_from_yaml`; switched prints to logger in config loader and data saver.
+
 ## Version 1.5.0
 
 ### Code refactor
@@ -117,6 +126,5 @@
 ### Code Refactoring
 
 - Improved styles for error messages in `assertions.py`.
-
 
 
