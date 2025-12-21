@@ -1,13 +1,31 @@
 # Vigilant Kit
-**Vigilant** is a library designed to help write and run robust functional tests using Selenium WebDriver. With 
-**Vigilant**, you can start writing complex test cases in a minute.
+Minimal Selenium helpers that stay out of your way. Use any test runner (pytest, unittest, behave, raw scripts), keep full WebDriver control, and get convenience actions/assertions without a framework telling you how to structure tests.
 
 ## Why Vigilant?
-* **Easy to start & Fast To Write**: All methods for interaction, waiting different conditions and asserting the results
-are already here.
-* **No limits**: You are not limited to a single testing framework, use Vigilant with **unittest**,
-  **pytest**, or for **scrapping data**. 
-* **Stability**: We use Selenium WebDriver. **W3C standard**.
+* **Minimal & composable**: Thin wrapper over Selenium; mix our helpers with native WebDriver any time.
+* **Framework-agnostic**: Works with pytest, unittest, behave, custom runners, or plain scripts.
+* **Quick wins**: Smart waits, handy finders, assertions, PDF helpers, and data savers ready to use.
+* **Customizable**: Bring your own browser options, config via env or YAML, extend actions/assertions as needed.
+* **Standards-based**: Built on Selenium WebDriver (W3C).
+
+## Quick start
+```shell
+pip install vigilant-kit
+export SELENIUM_BROWSER=chrome SELENIUM_HOST=local BASE_URL=https://example.com
+```
+
+```python
+from vigilant.driver.vigilant_driver import VigilantDriver
+
+def test_login():
+    browser = VigilantDriver()
+    browser.get_page("/login") \
+           .fill_form({"#email": "user@example.com", "#password": "secret"}) \
+           .click("#submit")
+    browser.assertions.see_text("Welcome")
+    browser.quit()
+```
+Use your runner of choice: pytest, unittest, behave, or a simple Python script.
 
 ## What included?
 _Wait, Act, Assert_
@@ -40,7 +58,7 @@ _Wait, Act, Assert_
 
 
 ### **Scrappers**
-Minimal required methods for scrapping some data:
+Minimal required methods for scraping some data:
   - `get_text_from_element()`
   - `get_attribute_from_element()`
   - `get_cookie()`
