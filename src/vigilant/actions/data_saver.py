@@ -1,6 +1,7 @@
 import csv
 import xml.etree.ElementTree as ET
 import os
+from vigilant.logger import logger as log
 
 
 def ensure_dir_exists(path):
@@ -14,4 +15,4 @@ class DataSaver:
         path = os.path.join(base_dir, f"{filename}.txt")
         with open(path, mode=mode, encoding='utf-8') as file:
             file.write(f"{data}\n")
-        print(f"Data successfully appended to {path}")
+        log.info(f"Data successfully appended to {path}")

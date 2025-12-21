@@ -1,9 +1,8 @@
 import os
 import yaml
 from pathlib import Path
+from vigilant.logger import logger as log
 
-RED = "\033[31m"
-RESET = "\033[0m"
 
 def set_env_variables_from_dict(data):
     for key, value in data.items():
@@ -19,9 +18,23 @@ def set_env_variables_from_yaml(yaml_path):
 
 CONFIG_YAML_FILE = 'vgl.yaml'
 
-if Path(CONFIG_YAML_FILE).exists():
-    print(f"Setting configuration from {CONFIG_YAML_FILE} file.")
-    set_env_variables_from_yaml(CONFIG_YAML_FILE)
-else:
-    print(f"{RED}Could not find `{CONFIG_YAML_FILE}` configuration file.{RESET}")
-    print(f"{RED}If you don't want to use the yaml configuration file, ensure you provide all configuration data as environment variables.{RESET}")
+def load_config_from_yaml(yaml_path: str = CONFIG_YAML_FILE, raise_on_missing: bool = False) -> bool:
+    """
+    Load environment variables from a YAML file.
+
+    :param yaml_path: path to the yaml configuration file
+    :param raise_on_missing: whether to raise if file is missing
+    :return: True if configuration was loaded, False otherwise
+    """
+    config_path = Path(yaml_path)
+    if not config_path.exists():
+        message = f"Could not find `{yaml_path}` configuration file."
+        if raise_on_missing:
+            raise FileNotFoundError(message)
+        log.warning(message)
+        log.warning("If you don't want to use the yaml configuration file, ensure you provide all configuration data as environment variables.")
+        return False
+
+    log.info(f"Setting configuration from {yaml_path} file.")
+    set_env_variables_from_yaml(yaml_path)
+    return True
