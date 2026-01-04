@@ -3,6 +3,7 @@ from selenium.webdriver import Remote
 
 from vigilant.actions.finder import Finder
 from vigilant.actions.waiter import Waiter
+from vigilant.bidi._bidi import VigilantBiDi, _extract_console_text, _extract_exception_text
 from vigilant.logger import logger as log
 
 RED = "\033[31m"
@@ -14,6 +15,7 @@ class Assertions:
         self.driver: Remote = driver
         self.finder: Finder = Finder(self.driver)
         self.waiter: Waiter = Waiter(self.driver, self.finder)
+        self._bidi = VigilantBiDi(self.driver)
 
     def count_visible_elements(self, selector: str) -> int:
         """
@@ -153,3 +155,72 @@ class Assertions:
         selector_with_text = '//*[text()="' + text + '"]'
         assert self.count_visible_elements(selector_with_text) > 0,\
             f"{RED}Text {text} was not found on the current page{RESET}"
+
+    def no_console_errors(self, observe_seconds: float = 0.5) -> None:
+        """
+        Assert that no console "error" messages appear during the observation window.
+
+        When BiDi isn't available (common on cloud/Grid providers), this method logs a warning and skips.
+        """
+
+        async def _check(bidi, *, observe_seconds):
+            devtools = bidi.devtools
+            session = bidi.session
+
+            await session.execute(devtools.runtime.enable())
+            receiver = session.listen(devtools.runtime.ConsoleAPICalled, buffer_size=200)
+
+            import trio
+
+            errors: list[str] = []
+            with trio.move_on_after(observe_seconds):
+                async with receiver:
+                    async for event in receiver:
+                        type_ = (getattr(event, "type_", "") or "").lower()
+                        if type_ == "error":
+                            text = _extract_console_text(event)
+                            errors.append(text or "console error")
+
+            return errors
+
+        if observe_seconds <= 0:
+            raise ValueError("observe_seconds must be > 0")
+
+        log.info("Asserting no console errors (observe_seconds=%s)", observe_seconds)
+        errors = self._bidi.run(_check, observe_seconds=float(observe_seconds))
+        if errors is None:
+            return
+        assert not errors, f"{RED}Console errors detected: {errors[:5]}{RESET}"
+
+    def no_js_errors(self, observe_seconds: float = 0.5) -> None:
+        """
+        Assert that no unhandled JavaScript exceptions occur during the observation window.
+
+        When BiDi isn't available (common on cloud/Grid providers), this method logs a warning and skips.
+        """
+
+        async def _check(bidi, *, observe_seconds):
+            devtools = bidi.devtools
+            session = bidi.session
+
+            await session.execute(devtools.runtime.enable())
+            receiver = session.listen(devtools.runtime.ExceptionThrown, buffer_size=200)
+
+            import trio
+
+            errors: list[str] = []
+            with trio.move_on_after(observe_seconds):
+                async with receiver:
+                    async for event in receiver:
+                        errors.append(_extract_exception_text(event) or "javascript exception")
+
+            return errors
+
+        if observe_seconds <= 0:
+            raise ValueError("observe_seconds must be > 0")
+
+        log.info("Asserting no JS errors (observe_seconds=%s)", observe_seconds)
+        errors = self._bidi.run(_check, observe_seconds=float(observe_seconds))
+        if errors is None:
+            return
+        assert not errors, f"{RED}JavaScript errors detected: {errors[:5]}{RESET}"

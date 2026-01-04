@@ -2,6 +2,14 @@
 
 ### [Logic behind Changelog](docs/changelog_logic.md)
 
+## Version 1.6.0
+
+### New features
+- Added optional BiDi-based assertions: `no_console_errors()` and `no_js_errors()`.
+- Added optional BiDi-based waiter helpers: `wait_for_response()` and `wait_for_network_idle()`.
+- BiDi features skip (with a warning) when BiDi/DevTools websocket is not available (common on cloud/Grid providers).
+- Added documentation: `docs/bidi.md`.
+
 ## Version 1.5.1
 
 ### Fixes & improvements
@@ -126,5 +134,4 @@
 ### Code Refactoring
 
 - Improved styles for error messages in `assertions.py`.
-
 

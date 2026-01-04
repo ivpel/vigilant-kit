@@ -90,6 +90,7 @@ pip install vigilant-kit
 - [Vigilant configuration](docs/configuration.md)
 - [Adding custom browser options](docs/browser_options.md)
 - [Using native selenium methods](docs/native_selenium.md)
+- [BiDi helpers (console/network)](docs/bidi.md)
 
 ### Examples & tutorials
 - [Quick start example using `unittest` library](docs/vigilant_unittest.md) 
