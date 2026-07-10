@@ -9,25 +9,46 @@ Minimal Selenium helpers that stay out of your way. Use any test runner (pytest,
 * **Standards-based**: Built on Selenium WebDriver (W3C).
 
 ## Quick start
+
+Install Vigilant Kit and make sure Chrome is available on your machine. Selenium Manager will resolve the matching
+driver automatically.
+
 ```shell
 pip install vigilant-kit
-export SELENIUM_BROWSER=chrome SELENIUM_HOST=local BASE_URL=https://example.com
 ```
+
+Create `smoke_test.py`:
 
 ```python
+from vigilant.driver import Config
 from vigilant.driver.vigilant_driver import VigilantDriver
 
-def test_login():
-    browser = VigilantDriver()
-    browser.get_page("/login") \
-           .fill_form({"#email": "user@example.com", "#password": "secret"}) \
-           .click("#submit")
-    browser.assertions.see_text("Welcome")
+
+config = Config(
+    selenium_browser="chrome",
+    selenium_host="local",
+    base_url="https://example.com",
+)
+
+browser = VigilantDriver(config=config)
+try:
+    browser.get_page("/")
+    browser.assertions.see_in_title("Example Domain")
+    print(browser.get_page_title())
+finally:
     browser.quit()
 ```
-Use your runner of choice: pytest, unittest, behave, or a simple Python script.
 
-## What included?
+Run it as a regular Python script:
+
+```shell
+python smoke_test.py
+```
+
+The browser opens `https://example.com`, verifies its title, prints `Example Domain`, and closes even if the assertion
+fails. The same `VigilantDriver` object can be used from pytest, unittest, behave, or another runner.
+
+## What's included?
 _Wait, Act, Assert_
 
 
@@ -48,7 +69,7 @@ _Wait, Act, Assert_
 
 ### **Assertions** 
 
-   - `see()`
+   - `see_element()`
    - `dont_see()`
    - `see_text()`
    - `see_in_title()`
