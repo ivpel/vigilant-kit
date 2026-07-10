@@ -6,6 +6,26 @@ If you are not familiar with `pytest` - there is good place to start:
 Official `pytest` documentation is pretty good as well: 
 [pytest](https://docs.pytest.org/en/latest/index.html)
 
+## Configuration
+
+Vigilant Kit reads configuration from environment variables. Optionally, you can keep a `vgl.yaml` in your project root
+and load it once (recommended for teams/CI):
+
+```python
+from vigilant.driver import load_config_from_yaml
+
+load_config_from_yaml()
+```
+
+Alternatively, you can pass a typed config object:
+
+```python
+from vigilant.driver.config import Config
+
+cfg = Config.from_yaml()
+act = VigilantDriver(config=cfg)
+```
+
 Example using `pytest`
 ```python
 import pytest
@@ -15,6 +35,7 @@ from vigilant.driver.vigilant_driver import VigilantDriver
 
 @pytest.fixture()
 def act():
+    # Optional: load ./vgl.yaml once at the beginning of the session/module instead.
     act = VigilantDriver()
     yield act
     act.quit()

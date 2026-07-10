@@ -24,7 +24,7 @@ Then we need to install `pytest`:
 ```shell
 pip install pytest
 ```
-How to install and run Selenium Server described here [Install Selenium Server](https://github.com/ivpel/vigilant-kit/blob/main/docs/selenium_install.md)
+How to run a local browser or a remote Selenium server/Grid: [Selenium setup](selenium_install.md)
 
 ## POM pattern
 What is POM pattern?
@@ -60,16 +60,18 @@ Like this:
     - test_name.py
 ```
 
-Also, don't forget about our configuration file `.vigilant.env`. You can place it in root of your project,
-or as example - inside `tests/functional/` directory. 
+Add configuration either via environment variables or via `vgl.yaml` in your project root.
+Vigilant Kit reads configuration from environment variables. Optionally, you can keep a `vgl.yaml` file in your project
+root and load it from your fixture once.
 
-Example of `.vigilant.env` configuration:
-```text
-SELENIUM_HOST=http://127.0.0.1:4444/wd/hub
-SELENIUM_BROWSER=firefox
-BASE_URL=https://www.saucedemo.com
-WAIT_TIMEOUT=10
-LOGGER_LEVEL=INFO
+Example `vgl.yaml`:
+```yaml
+vgl:
+  SELENIUM_HOST: local
+  SELENIUM_BROWSER: firefox
+  BASE_URL: https://www.saucedemo.com
+  WAIT_TIMEOUT: 10
+  LOGGER_LEVEL: INFO
 ```
 
 ### POM objects
@@ -212,12 +214,14 @@ Now let's create Login test.
 ```python
 import pytest
 
+from vigilant.driver import load_config_from_yaml
 from vigilant.driver.vigilant_driver import VigilantDriver
 from pom.login_page import LoginPage
 
 
 @pytest.fixture(scope="module")
 def driver():
+    load_config_from_yaml()  # reads ./vgl.yaml if present (safe to call even if missing)
     vd = VigilantDriver()
     yield vd
     vd.quit()

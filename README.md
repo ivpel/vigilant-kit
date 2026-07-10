@@ -84,6 +84,17 @@ methods. You can create your own methods or use native `WebDriver` methods and s
 pip install vigilant-kit
 ```
 
+Python 3.10 or newer is required.
+
+Configuration can be supplied through environment variables or an instance-scoped typed object:
+
+```python
+from vigilant.driver.config import Config
+from vigilant.driver.vigilant_driver import VigilantDriver
+
+browser = VigilantDriver(config=Config.from_yaml("vgl.yaml"))
+```
+
 ## Docs
 
 ### Configuration
@@ -99,3 +110,11 @@ pip install vigilant-kit
 
 ### Actions
 - [List of actions](docs/actions.md)
+
+## Development
+
+Run the unit suite without starting a browser:
+
+```shell
+PYTHONPATH=src python -m unittest discover -s tests -v
+```

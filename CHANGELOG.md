@@ -2,6 +2,25 @@
 
 ### [Logic behind Changelog](docs/changelog_logic.md)
 
+## Version 1.7.0
+
+### New features
+- Added immutable typed configuration via `vigilant.driver.config.Config`.
+- `VigilantDriver(config=...)` now resolves settings with the precedence: explicit constructor arguments, typed config, environment variables.
+- Added `Config.from_env()`, `Config.from_yaml()`, `Config.merged()`, and the backward-compatible `apply_to_env()` helper.
+
+### Fixes & improvements
+- Instance configuration now supplies `BASE_URL`, waiter timeouts, and logger level without mutating process environment.
+- YAML configuration reports malformed documents, invalid `vgl` sections, and invalid `WAIT_TIMEOUT` values with contextual errors.
+- Relative navigation now normalizes slashes between `BASE_URL` and the requested path.
+- JavaScript helpers now expand argument sequences as Selenium expects.
+- Updated and simplified configuration, Selenium setup, actions, pytest, and unittest documentation.
+- Added unit coverage for configuration precedence, YAML loading, local/remote driver creation, URL handling, logging, and JavaScript arguments.
+
+### Compatibility
+- Minimum supported Python version is now 3.10, matching the type syntax used by the package.
+- `load_config_from_yaml()` retains its environment-based behavior for backward compatibility.
+
 ## Version 1.6.0
 
 ### New features
@@ -134,4 +153,3 @@
 ### Code Refactoring
 
 - Improved styles for error messages in `assertions.py`.
-

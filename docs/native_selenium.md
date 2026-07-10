@@ -13,7 +13,7 @@ To access native Selenium WebDriver methods, you can utilize the `driver` attrib
 
 ```python
 act.driver.get('https://python.org') # Will use native Selenium get() method
-act.get_page('https://python.org') # Will use native get() method under the hood.
+act.go_to('https://python.org') # Uses Vigilant's absolute navigation helper.
 ```
 
 ## Example Usage

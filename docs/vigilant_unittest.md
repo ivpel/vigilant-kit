@@ -4,25 +4,25 @@ We will write our first test with `unittest` library. Also make sure that you in
 
 
 ### Configuration
-Configuration can be done through environment variables. Make sure that your Selenium Server is up and running, if not -
-[**Install Selenium server**](selenium_install.md)
+Configuration can be done through environment variables, or via `vgl.yaml` loaded at runtime. If you want to run against
+a remote Selenium server/Grid, see: [Selenium setup](selenium_install.md)
 
-Create `.vigilant.env` file with next data:
-```shell
-# Selenium host URL
-SELENIUM_HOST=http://127.0.0.1:4444/wd/hub 
+Example `vgl.yaml`:
+```yaml
+vgl:
+  SELENIUM_HOST: local
+  SELENIUM_BROWSER: firefox
+  BASE_URL: http://www.python.org
+  WAIT_TIMEOUT: 10
+  LOGGER_LEVEL: INFO
+```
 
-# Browser which will performing the tests
-SELENIUM_BROWSER=firefox 
+Alternatively, you can avoid YAML-to-env loading and pass a typed config object:
+```python
+from vigilant.driver.config import Config
+from vigilant.driver.vigilant_driver import VigilantDriver
 
-# The root URL of the application under test.
-BASE_URL=http://www.python.org 
-
-# Amount of time (in seconds) that a test will wait while loading a page or waiting for element
-WAIT_TIMEOUT=10 
-
-# Log level
-LOGGER_LEVEL=INFO 
+browser = VigilantDriver(config=Config.from_yaml())
 ```
 
 ### Test
@@ -30,6 +30,7 @@ Create file `test_first.py` with same code as below. We will cover 3 simple case
 ```python
 import unittest
 
+from vigilant.driver import load_config_from_yaml
 from vigilant.driver.vigilant_driver import VigilantDriver
 
 
@@ -37,6 +38,7 @@ class TestHomePage(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls) -> None:
+        load_config_from_yaml()  # reads ./vgl.yaml if present (safe to call even if missing)
         cls.act = VigilantDriver()
 
     @classmethod
