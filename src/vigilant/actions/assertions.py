@@ -5,16 +5,18 @@ from vigilant.actions.finder import Finder
 from vigilant.actions.waiter import Waiter
 from vigilant.bidi._bidi import VigilantBiDi, _extract_console_text, _extract_exception_text
 from vigilant.logger import logger as log
+from vigilant.driver.config import VigilantConfig
 
 RED = "\033[31m"
 RESET = "\033[0m"
 
 class Assertions:
 
-    def __init__(self, driver):
+    def __init__(self, driver, config: VigilantConfig | None = None):
         self.driver: Remote = driver
+        self.config = config or VigilantConfig.from_env()
         self.finder: Finder = Finder(self.driver)
-        self.waiter: Waiter = Waiter(self.driver, self.finder)
+        self.waiter: Waiter = Waiter(self.driver, self.finder, timeout=self.config.wait_timeout)
         self._bidi = VigilantBiDi(self.driver)
 
     def count_visible_elements(self, selector: str) -> int:

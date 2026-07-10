@@ -1,6 +1,7 @@
-import os
+from dataclasses import replace
 from selenium import webdriver
 from vigilant.actions.vigilant_actions import VigilantActions
+from vigilant.driver.config import Config, VigilantConfig
 from vigilant.logger import logger as log
 
 class VigilantDriver(VigilantActions):
@@ -16,13 +17,29 @@ class VigilantDriver(VigilantActions):
         create_driver_session: Creates a Selenium driver session (local or remote).
     """
 
-    def __init__(self, browser_options=None, selenium_browser=None, selenium_host=None):
+    def __init__(self, browser_options=None, selenium_browser=None, selenium_host=None, config: Config | None = None):
         """
         Initializes the VigilantDriver with the specified browser and host settings.
         Raises a ValueError if SELENIUM_BROWSER is not set or if the specified browser is unsupported.
         """
-        self.SELENIUM_BROWSER = selenium_browser or os.environ.get("SELENIUM_BROWSER")
-        self.SELENIUM_HOST = selenium_host or os.environ.get("SELENIUM_HOST")
+        if config is not None and not isinstance(config, VigilantConfig):
+            raise TypeError("config must be a VigilantConfig (or None)")
+
+        resolved_config = Config.from_env()
+        if config is not None:
+            resolved_config = resolved_config.merged(config)
+        resolved_config = replace(
+            resolved_config,
+            selenium_browser=selenium_browser or resolved_config.selenium_browser,
+            selenium_host=selenium_host if selenium_host is not None else resolved_config.selenium_host,
+        )
+
+        self.config = resolved_config
+        self.SELENIUM_BROWSER = resolved_config.selenium_browser
+        self.SELENIUM_HOST = resolved_config.selenium_host
+
+        if resolved_config.logger_level:
+            log.setLevel(resolved_config.logger_level.upper())
 
         if not self.SELENIUM_BROWSER:
             raise ValueError("SELENIUM_BROWSER environment variable is not set")
@@ -34,7 +51,7 @@ class VigilantDriver(VigilantActions):
             self.driver = self.create_driver_session(browser_options)
         else:
             self.driver = self.create_driver_session(browser_options, remote=True)
-        super().__init__(self.driver)
+        super().__init__(self.driver, config=resolved_config)
 
     def default_browser_options(self):
         """

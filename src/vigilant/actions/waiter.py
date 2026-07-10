@@ -28,9 +28,10 @@ def get_timeout(default: float = 10.0) -> float:
 
 class Waiter:
 
-    def __init__(self, driver, finder):
+    def __init__(self, driver, finder, timeout: float | None = None):
         self.driver: Remote = driver
         self.finder: Finder = finder
+        self.timeout = get_timeout() if timeout is None else float(timeout)
         self._bidi = VigilantBiDi(self.driver)
 
     def wait_for_element_to_be_clickable(self, selector: str):
@@ -41,7 +42,7 @@ class Waiter:
         :return: self
         """
         log.info(f"Waiting for element with selector: {selector} - to be clickable.")
-        WebDriverWait(driver=self.driver, timeout=get_timeout()).until(
+        WebDriverWait(driver=self.driver, timeout=self.timeout).until(
             EC.element_to_be_clickable(self.finder.by_xpath_or_css(selector))
         )
         return self
@@ -54,7 +55,7 @@ class Waiter:
         :return: self
         """
         log.info(f"Waiting for element with selector: {selector} - to be visible.")
-        WebDriverWait(driver=self.driver, timeout=get_timeout()).until(
+        WebDriverWait(driver=self.driver, timeout=self.timeout).until(
             EC.visibility_of_element_located(self.finder.by_xpath_or_css(selector))
         )
         return self
@@ -67,7 +68,7 @@ class Waiter:
         :return: self
         """
         log.info(f"Waiting for element with selector: {selector} - to be presented in DOM.")
-        WebDriverWait(driver=self.driver, timeout=get_timeout()).until(
+        WebDriverWait(driver=self.driver, timeout=self.timeout).until(
             EC.presence_of_element_located(self.finder.by_xpath_or_css(selector))
         )
         return self
@@ -80,7 +81,7 @@ class Waiter:
         :return: self
         """
         log.info(f"Waiting for element with selector: {selector} - to disappear.")
-        WebDriverWait(driver=self.driver, timeout=get_timeout()).until(
+        WebDriverWait(driver=self.driver, timeout=self.timeout).until(
             EC.invisibility_of_element_located(self.finder.by_xpath_or_css(selector))
         )
         return self
@@ -94,7 +95,7 @@ class Waiter:
         :return: self
         """
         log.info(f"Waiting for element with selector: {selector} - to contain value: {value_text}.")
-        WebDriverWait(driver=self.driver, timeout=get_timeout()).until(
+        WebDriverWait(driver=self.driver, timeout=self.timeout).until(
             EC.text_to_be_present_in_element_value(self.finder.by_xpath_or_css(selector), value_text)
         )
         return self
@@ -108,7 +109,7 @@ class Waiter:
         :return: self
         """
         log.info(f"Waiting for element with selector: {selector} - to contain text: {text}.")
-        WebDriverWait(driver=self.driver, timeout=get_timeout()).until(
+        WebDriverWait(driver=self.driver, timeout=self.timeout).until(
             EC.text_to_be_present_in_element(self.finder.by_xpath_or_css(selector), text)
         )
         return self
@@ -122,7 +123,7 @@ class Waiter:
         :return: self
         """
         log.info(f"Waiting for element with selector: {selector} - to contain attribute text: {text_in_attribute}.")
-        WebDriverWait(driver=self.driver, timeout=get_timeout()).until(
+        WebDriverWait(driver=self.driver, timeout=self.timeout).until(
             EC.text_to_be_present_in_element_attribute(self.finder.by_xpath_or_css(selector), text_in_attribute)
         )
         return self
@@ -135,7 +136,7 @@ class Waiter:
         :return: self
         """
         log.info("Waiting for alert to be present.")
-        WebDriverWait(driver=self.driver, timeout=get_timeout()).until(
+        WebDriverWait(driver=self.driver, timeout=self.timeout).until(
             EC.alert_is_present()
         )
         return self
@@ -164,7 +165,7 @@ class Waiter:
         When BiDi isn't available (common on cloud/Grid providers), this method logs a warning and skips.
         """
 
-        timeout = get_timeout() if timeout is None else float(timeout)
+        timeout = self.timeout if timeout is None else float(timeout)
 
         async def _wait(bidi, *, url_contains, url_equals, status, timeout):
             devtools = bidi.devtools
@@ -224,7 +225,7 @@ class Waiter:
         if idle_ms <= 0:
             raise ValueError("idle_ms must be > 0")
 
-        timeout = get_timeout() if timeout is None else float(timeout)
+        timeout = self.timeout if timeout is None else float(timeout)
         idle_seconds = idle_ms / 1000.0
 
         async def _wait(bidi, *, idle_seconds, timeout):

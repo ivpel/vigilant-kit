@@ -4,13 +4,13 @@ build-backend = "hatchling.build"
 
 [project]
 name = "vigilant_kit"
-version = "1.6.0"
+version = "1.7.0"
 authors = [
   { name="Pelykh Ivan", email="ivan.pelykh@protonmail.com" },
 ]
 description = "Library that makes functional testing with Selenium WebDriver fast and easy. "
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.10"
 dependencies = [
     "selenium",
     "pyyaml",
@@ -19,14 +19,18 @@ dependencies = [
 
 keywords = ["testing", "selenium", "webdriver", "pytest", "unittest", "bdd", "tdd", "functional", "functional-testing"]
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/vigilant"]
-
 classifiers = [
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
     "Operating System :: OS Independent",
 ]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/vigilant"]
 
 [project.urls]
 "Homepage" = "https://github.com/ivpel/vigilant"

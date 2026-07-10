@@ -9,6 +9,7 @@ from vigilant.actions.waiter import Waiter
 from vigilant.actions.data_saver import DataSaver
 from vigilant.actions.vigilant_pdf import VigilantPDF
 from vigilant.logger import logger as log
+from vigilant.driver.config import VigilantConfig
 
 
 def get_base_url() -> str:
@@ -29,11 +30,12 @@ class VigilantActions:
     `assertions` - assertion methods for browser.
     """
 
-    def __init__(self, driver):
+    def __init__(self, driver, config: VigilantConfig | None = None):
         self.driver: Remote = driver
-        self.assertions: Assertions = Assertions(self.driver)
+        self.config = config or VigilantConfig.from_env()
+        self.assertions: Assertions = Assertions(self.driver, config=self.config)
         self.finder: Finder = Finder(self.driver)
-        self.waiter: Waiter = Waiter(self.driver, self.finder)
+        self.waiter: Waiter = Waiter(self.driver, self.finder, timeout=self.config.wait_timeout)
         self.data_saver: DataSaver = DataSaver()
         self.vgl_pdf: VigilantPDF = VigilantPDF()
 
@@ -44,11 +46,12 @@ class VigilantActions:
         :param url: A path to the page relative to the BASE_URL
         :return: self
         """
-        base_url = get_base_url()
+        base_url = self.config.base_url
         if not base_url:
-            raise ValueError("BASE_URL environment variable is not set; cannot build full URL.")
+            raise ValueError("BASE_URL is not configured; cannot build full URL.")
         log.info(f'Getting page: {url}')
-        self.driver.get(base_url + url)
+        full_url = f"{base_url.rstrip('/')}/{url.lstrip('/')}"
+        self.driver.get(full_url)
         return self
 
     def go_to(self, url):
@@ -152,7 +155,8 @@ class VigilantActions:
         :return: self
         """
         log.info(f'Execute JS script: {js_script} with arguments: {arguments}')
-        self.driver.execute_script(js_script, arguments)
+        args = arguments if isinstance(arguments, (list, tuple)) else (() if arguments is None else (arguments,))
+        self.driver.execute_script(js_script, *args)
         return self
 
     def execute_async_js_script(self, js_script, arguments=None):
@@ -164,7 +168,8 @@ class VigilantActions:
         :return: self
         """
         log.info(f'Execute async JS script: {js_script} with arguments: {arguments}')
-        self.driver.execute_async_script(js_script, arguments)
+        args = arguments if isinstance(arguments, (list, tuple)) else (() if arguments is None else (arguments,))
+        self.driver.execute_async_script(js_script, *args)
         return self
 
     def delete_all_cookies(self):

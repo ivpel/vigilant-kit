@@ -1,19 +1,7 @@
-import os
-import yaml
 from pathlib import Path
 from vigilant.logger import logger as log
 
-
-def set_env_variables_from_dict(data):
-    for key, value in data.items():
-        os.environ[key] = str(value)
-
-def set_env_variables_from_yaml(yaml_path):
-    with open(yaml_path, 'r') as file:
-        configs = yaml.safe_load(file)
-
-    selenium_config = configs.get('vgl', {})
-    set_env_variables_from_dict(selenium_config)
+from vigilant.driver.config import Config, VigilantConfig
 
 
 CONFIG_YAML_FILE = 'vgl.yaml'
@@ -36,5 +24,6 @@ def load_config_from_yaml(yaml_path: str = CONFIG_YAML_FILE, raise_on_missing: b
         return False
 
     log.info(f"Setting configuration from {yaml_path} file.")
-    set_env_variables_from_yaml(yaml_path)
+    cfg = VigilantConfig.from_yaml(yaml_path=yaml_path, raise_on_missing=raise_on_missing)
+    cfg.apply_to_env(overwrite=True)
     return True
