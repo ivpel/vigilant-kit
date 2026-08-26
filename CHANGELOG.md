@@ -2,6 +2,14 @@
 
 ### [Logic behind Changelog](docs/changelog_logic.md)
 
+## Version 1.7.1
+
+### Fixes & improvements
+- Added GitHub Actions CI for Python 3.10–3.13 and package build validation.
+- Added automated GitHub Actions dependency updates through Dependabot.
+- Added a CI status badge to the README.
+- Corrected repository, documentation, and issue tracker links in package metadata.
+
 ## Version 1.7.0
 
 ### New features
@@ -16,7 +24,6 @@
 - JavaScript helpers now expand argument sequences as Selenium expects.
 - Updated and simplified configuration, Selenium setup, actions, pytest, and unittest documentation.
 - Added unit coverage for configuration precedence, YAML loading, local/remote driver creation, URL handling, logging, and JavaScript arguments.
-- Added GitHub Actions CI for Python 3.10–3.13, package build validation, and automated action dependency updates.
 
 ### Compatibility
 - Minimum supported Python version is now 3.10, matching the type syntax used by the package.
