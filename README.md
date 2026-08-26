@@ -1,4 +1,7 @@
 # Vigilant Kit
+
+[![CI](https://github.com/ivpel/vigilant-kit/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ivpel/vigilant-kit/actions/workflows/ci.yml)
+
 Minimal Selenium helpers that stay out of your way. Use any test runner (pytest, unittest, behave, raw scripts), keep full WebDriver control, and get convenience actions/assertions without a framework telling you how to structure tests.
 
 ## Why Vigilant?

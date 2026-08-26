@@ -16,6 +16,7 @@
 - JavaScript helpers now expand argument sequences as Selenium expects.
 - Updated and simplified configuration, Selenium setup, actions, pytest, and unittest documentation.
 - Added unit coverage for configuration precedence, YAML loading, local/remote driver creation, URL handling, logging, and JavaScript arguments.
+- Added GitHub Actions CI for Python 3.10–3.13, package build validation, and automated action dependency updates.
 
 ### Compatibility
 - Minimum supported Python version is now 3.10, matching the type syntax used by the package.

@@ -33,5 +33,7 @@ classifiers = [
 packages = ["src/vigilant"]
 
 [project.urls]
-"Homepage" = "https://github.com/ivpel/vigilant"
-"Bug Tracker" = "https://github.com/ivpel/vigilant/issues"
+"Homepage" = "https://github.com/ivpel/vigilant-kit"
+"Repository" = "https://github.com/ivpel/vigilant-kit"
+"Documentation" = "https://github.com/ivpel/vigilant-kit/tree/main/docs"
+"Bug Tracker" = "https://github.com/ivpel/vigilant-kit/issues"
