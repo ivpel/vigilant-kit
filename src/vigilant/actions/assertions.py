@@ -26,13 +26,7 @@ class Assertions:
         :param selector: CSS selector
         :return: number of visible elements that match the selector
         """
-        try:
-            first_match = self.finder.find(selector)
-            if first_match.is_displayed():
-                return len(self.finder.find_multiply(selector))
-        except NoSuchElementException:
-            pass
-        return 0
+        return sum(element.is_displayed() for element in self.finder.find_multiply(selector))
 
     def count_elements(self, selector: str) -> int:
         """
