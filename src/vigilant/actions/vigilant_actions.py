@@ -154,7 +154,7 @@ class VigilantActions:
         :param arguments: Optional arguments for the script
         :return: self
         """
-        log.info(f'Execute JS script: {js_script} with arguments: {arguments}')
+        log.info('Executing JavaScript (script and arguments omitted)')
         args = arguments if isinstance(arguments, (list, tuple)) else (() if arguments is None else (arguments,))
         self.driver.execute_script(js_script, *args)
         return self
@@ -167,7 +167,7 @@ class VigilantActions:
         :param arguments: Optional arguments for the script
         :return: self
         """
-        log.info(f'Execute async JS script: {js_script} with arguments: {arguments}')
+        log.info('Executing asynchronous JavaScript (script and arguments omitted)')
         args = arguments if isinstance(arguments, (list, tuple)) else (() if arguments is None else (arguments,))
         self.driver.execute_async_script(js_script, *args)
         return self
@@ -199,7 +199,7 @@ class VigilantActions:
 
         :param cookie_name: A dictionary containing the cookie name and value
         """
-        log.info(f'Setting cookie: {cookie_name}')
+        log.info('Setting cookie (data omitted)')
         self.driver.add_cookie(cookie_name)
 
     def get_all_cookies(self):
@@ -269,7 +269,7 @@ class VigilantActions:
         :param value: The value to type in the alert
         :return: self
         """
-        log.info(f'Typing in alert: {value}')
+        log.info('Typing in alert (value omitted)')
         self.driver.switch_to.alert.send_keys(value)
         return self
 
@@ -386,7 +386,7 @@ class VigilantActions:
         :return: self
         """
         self.waiter.wait_for_element_to_be_visible(selector)
-        log.info(f'Filling field: {selector} with value: {value}')
+        log.info('Filling field: %s (value omitted)', selector)
         self.finder.find(selector).send_keys(value)
         return self
 
@@ -400,7 +400,7 @@ class VigilantActions:
         if type(selector_data) is dict:
             for selector, data in selector_data.items():
                 self.waiter.wait_for_element_to_be_visible(selector)
-                log.info(f'Filling field: {selector} with value: {data}')
+                log.info('Filling field: %s (value omitted)', selector)
                 self.finder.find(selector).send_keys(data)
         return self
 
@@ -424,7 +424,7 @@ class VigilantActions:
         :param key: The key to press
         :return: self
         """
-        log.info(f'Pressing key: {key}')
+        log.info('Sending keyboard input (value omitted)')
         actions = ActionChains(self.driver)
         actions.send_keys(key).perform()
         return self
@@ -437,7 +437,7 @@ class VigilantActions:
         :param keys: The keys to send
         :return: self
         """
-        log.info(f'Send keys: {keys} to the field: {selector}')
+        log.info('Sending keys to field: %s (value omitted)', selector)
         self.finder.find(selector).send_keys(keys)
         return self
 

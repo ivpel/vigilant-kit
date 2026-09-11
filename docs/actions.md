@@ -63,3 +63,10 @@ browser.driver.get("https://example.com")
 ```
 
 See also: [Using native selenium methods](native_selenium.md).
+
+## Input logging
+
+Input actions log the operation and selector without field values, keyboard input, alert text, or cookie data.
+JavaScript helpers omit script source and arguments. Value and attribute waiters omit the expected value.
+This applies at all logging levels. Selectors, navigation URLs, and other diagnostic messages are still logged;
+avoid embedding secrets in them. Selenium's own logging is configured separately.

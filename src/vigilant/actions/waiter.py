@@ -94,7 +94,7 @@ class Waiter:
         :param value_text: The text to wait for
         :return: self
         """
-        log.info(f"Waiting for element with selector: {selector} - to contain value: {value_text}.")
+        log.info("Waiting for element with selector: %s - to contain a value (value omitted).", selector)
         WebDriverWait(driver=self.driver, timeout=self.timeout).until(
             EC.text_to_be_present_in_element_value(self.finder.by_xpath_or_css(selector), value_text)
         )
