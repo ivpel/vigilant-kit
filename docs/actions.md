@@ -33,7 +33,7 @@ Element waits (WebDriverWait):
 - `wait_for_element_to_disappear(selector)`
 - `wait_for_text_to_be_present_in_element(selector, text)`
 - `wait_for_text_to_be_present_in_element_value(selector, value_text)`
-- `wait_for_text_to_be_present_in_element_attribute(selector, text_in_attribute)`
+- `wait_for_text_to_be_present_in_element_attribute(selector, attribute_name, text_in_attribute)`
 - `wait_for_alert_()`
 
 BiDi-based waits (best-effort; skip with a warning when unavailable, common on cloud/Grid):
@@ -63,4 +63,3 @@ browser.driver.get("https://example.com")
 ```
 
 See also: [Using native selenium methods](native_selenium.md).
-

@@ -114,17 +114,22 @@ class Waiter:
         )
         return self
 
-    def wait_for_text_to_be_present_in_element_attribute(self, selector: str, text_in_attribute: str):
+    def wait_for_text_to_be_present_in_element_attribute(
+        self, selector: str, attribute_name: str, text_in_attribute: str
+    ):
         """
         Waits for the specified text to be present in the attribute of the element with the given selector.
 
         :param selector: The element's selector
+        :param attribute_name: The attribute to inspect
         :param text_in_attribute: The text to wait for
         :return: self
         """
-        log.info(f"Waiting for element with selector: {selector} - to contain attribute text: {text_in_attribute}.")
+        log.info("Waiting for element with selector: %s - to contain text in attribute: %s.", selector, attribute_name)
         WebDriverWait(driver=self.driver, timeout=self.timeout).until(
-            EC.text_to_be_present_in_element_attribute(self.finder.by_xpath_or_css(selector), text_in_attribute)
+            EC.text_to_be_present_in_element_attribute(
+                self.finder.by_xpath_or_css(selector), attribute_name, text_in_attribute
+            )
         )
         return self
 
