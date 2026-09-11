@@ -2,7 +2,7 @@
 
 ### [Logic behind Changelog](docs/changelog_logic.md)
 
-## Unreleased
+## Version 1.7.2
 
 ### Fixes & improvements
 - Count visibility for each matched element, preventing false passes in absence and quantity assertions.
