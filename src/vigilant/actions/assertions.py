@@ -152,11 +152,11 @@ class Assertions:
         assert self.count_visible_elements(selector_with_text) > 0,\
             f"{RED}Text {text} was not found on the current page{RESET}"
 
-    def no_console_errors(self, observe_seconds: float = 0.5) -> None:
+    def no_console_errors(self, observe_seconds: float = 0.5, *, on_unavailable: str = "raise") -> None:
         """
         Assert that no console "error" messages appear during the observation window.
 
-        When BiDi isn't available (common on cloud/Grid providers), this method logs a warning and skips.
+        Unavailable connections raise unless on_unavailable="warn". Operation errors always raise.
         """
 
         async def _check(bidi, *, observe_seconds):
@@ -183,16 +183,16 @@ class Assertions:
             raise ValueError("observe_seconds must be > 0")
 
         log.info("Asserting no console errors (observe_seconds=%s)", observe_seconds)
-        errors = self._bidi.run(_check, observe_seconds=float(observe_seconds))
+        errors = self._bidi.run(_check, observe_seconds=float(observe_seconds), on_unavailable=on_unavailable)
         if errors is None:
             return
         assert not errors, f"{RED}Console errors detected: {errors[:5]}{RESET}"
 
-    def no_js_errors(self, observe_seconds: float = 0.5) -> None:
+    def no_js_errors(self, observe_seconds: float = 0.5, *, on_unavailable: str = "raise") -> None:
         """
         Assert that no unhandled JavaScript exceptions occur during the observation window.
 
-        When BiDi isn't available (common on cloud/Grid providers), this method logs a warning and skips.
+        Unavailable connections raise unless on_unavailable="warn". Operation errors always raise.
         """
 
         async def _check(bidi, *, observe_seconds):
@@ -216,7 +216,7 @@ class Assertions:
             raise ValueError("observe_seconds must be > 0")
 
         log.info("Asserting no JS errors (observe_seconds=%s)", observe_seconds)
-        errors = self._bidi.run(_check, observe_seconds=float(observe_seconds))
+        errors = self._bidi.run(_check, observe_seconds=float(observe_seconds), on_unavailable=on_unavailable)
         if errors is None:
             return
         assert not errors, f"{RED}JavaScript errors detected: {errors[:5]}{RESET}"

@@ -36,7 +36,7 @@ Element waits (WebDriverWait):
 - `wait_for_text_to_be_present_in_element_attribute(selector, attribute_name, text_in_attribute)`
 - `wait_for_alert_()`
 
-BiDi-based waits (best-effort; skip with a warning when unavailable, common on cloud/Grid):
+BiDi/CDP waits (unavailable connections raise by default; explicit `on_unavailable="warn"` allows a warning and return):
 - `wait_for_response(url_contains=..., url_equals=..., status=..., timeout=...)`
 - `wait_for_network_idle(idle_ms=..., timeout=...)`
 
@@ -49,7 +49,7 @@ Common assertions:
 - `see_in_url(text)` / `dont_see_in_current_url(text)`
 - `see_text(text)` / `see_text_in_dom(text)`
 
-BiDi-based assertions (best-effort; skip with a warning when unavailable, common on cloud/Grid):
+BiDi/CDP assertions (unavailable connections raise by default; explicit `on_unavailable="warn"` allows a warning and return):
 - `no_console_errors(observe_seconds=...)`
 - `no_js_errors(observe_seconds=...)`
 

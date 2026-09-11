@@ -163,11 +163,13 @@ class Waiter:
         url_equals: str | None = None,
         status: int | None = None,
         timeout: float | None = None,
+        *,
+        on_unavailable: str = "raise",
     ):
         """
         Wait for a matching network response using Selenium's BiDi/CDP connection.
 
-        When BiDi isn't available (common on cloud/Grid providers), this method logs a warning and skips.
+        Unavailable connections raise unless on_unavailable="warn". Timeouts always raise.
         """
 
         timeout = self.timeout if timeout is None else float(timeout)
@@ -214,6 +216,7 @@ class Waiter:
         )
         self._bidi.run(
             _wait,
+            on_unavailable=on_unavailable,
             url_contains=url_contains,
             url_equals=url_equals,
             status=status,
@@ -221,11 +224,13 @@ class Waiter:
         )
         return self
 
-    def wait_for_network_idle(self, idle_ms: int = 500, timeout: float | None = None):
+    def wait_for_network_idle(
+        self, idle_ms: int = 500, timeout: float | None = None, *, on_unavailable: str = "raise"
+    ):
         """
         Wait until there are no in-flight network requests for `idle_ms`.
 
-        Uses Selenium's BiDi/CDP connection when available; otherwise logs a warning and skips.
+        Unavailable connections raise unless on_unavailable="warn". Timeouts always raise.
         """
         if idle_ms <= 0:
             raise ValueError("idle_ms must be > 0")
@@ -279,8 +284,9 @@ class Waiter:
                                     if idle_started is None:
                                         idle_started = trio.current_time()
                                     if trio.current_time() - idle_started >= idle_seconds:
+                                        nursery.cancel_scope.cancel()
                                         return
 
         log.info("Waiting for network idle (idle_ms=%s timeout=%s)", idle_ms, timeout)
-        self._bidi.run(_wait, idle_seconds=idle_seconds, timeout=timeout)
+        self._bidi.run(_wait, idle_seconds=idle_seconds, timeout=timeout, on_unavailable=on_unavailable)
         return self

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import is_dataclass, asdict
+from contextlib import AsyncExitStack
 from typing import Any, Callable, Optional
 
 import trio
@@ -69,8 +70,7 @@ def _extract_exception_text(event: Any) -> str:
 
 class VigilantBiDi:
     """
-    Thin adapter around Selenium's `driver.bidi_connection()` with "skip on failure"
-    behavior suitable for remote/cloud runs.
+    Adapter around Selenium's `driver.bidi_connection()` with explicit failure policy.
     """
 
     def __init__(self, driver: Any):
@@ -79,22 +79,37 @@ class VigilantBiDi:
     def supported(self) -> bool:
         return hasattr(self._driver, "bidi_connection")
 
-    def run(self, async_fn: Callable[..., Any], *args: Any, **kwargs: Any) -> Optional[Any]:
+    def run(
+        self, async_fn: Callable[..., Any], *args: Any,
+        on_unavailable: str = "raise", **kwargs: Any
+    ) -> Optional[Any]:
         """
         Run an async function that receives a `BidiConnection` as its first argument.
-        Returns None when BiDi isn't available.
+        Connection failures raise BiDiUnavailableError by default. Opt into
+        on_unavailable="warn" to log and return None instead. Operation errors,
+        including timeouts, always propagate.
         """
+        if on_unavailable not in ("raise", "warn"):
+            raise ValueError('on_unavailable must be "raise" or "warn"')
+
+        def unavailable(exc: BaseException) -> None:
+            if on_unavailable == "raise":
+                raise BiDiUnavailableError("BiDi/CDP connection is unavailable") from exc
+            _warn_bidi_unavailable_once(self._driver, exc)
+
         if not self.supported():
-            _warn_bidi_unavailable_once(self._driver, RuntimeError("driver has no bidi_connection()"))
-            return None
+            return unavailable(RuntimeError("driver has no bidi_connection()"))
 
         async def _runner() -> Any:
-            async with self._driver.bidi_connection() as bidi:
+            async with AsyncExitStack() as stack:
+                try:
+                    bidi = await stack.enter_async_context(self._driver.bidi_connection())
+                except (WebDriverException, OSError) as exc:
+                    return unavailable(exc)
                 return await async_fn(bidi, *args, **kwargs)
 
-        try:
-            return _trio_run(_runner)
-        except (WebDriverException, OSError, Exception) as exc:
-            _warn_bidi_unavailable_once(self._driver, exc)
-            return None
+        return _trio_run(_runner)
 
+
+class BiDiUnavailableError(RuntimeError):
+    """The requested BiDi/CDP check could not establish a connection."""
