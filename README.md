@@ -142,3 +142,9 @@ Run the unit suite without starting a browser:
 ```shell
 PYTHONPATH=src python -m unittest discover -s tests -v
 ```
+
+Run the optional Chrome regression tests against self-contained local pages (Chrome and a matching driver required):
+
+```shell
+VIGILANT_BROWSER_TESTS=1 PYTHONPATH=src python -m unittest discover -s tests -p test_browser.py -v
+```

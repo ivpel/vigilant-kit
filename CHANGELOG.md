@@ -2,6 +2,23 @@
 
 ### [Logic behind Changelog](docs/changelog_logic.md)
 
+## Unreleased
+
+### Fixes & improvements
+- Count visibility for each matched element, preventing false passes in absence and quantity assertions.
+- Fix attribute text waits by accepting the attribute name separately from the expected text.
+- Propagate BiDi/CDP operation errors and timeouts instead of treating them as unavailable checks.
+- Cancel network listeners when the idle condition is met so the waiter can finish and release resources.
+- Omit field values, keyboard input, alert text, cookie data, and JavaScript source/arguments from action logs.
+- Add regression tests for visibility, attribute waits, BiDi lifecycle/errors, input logging, and optional Chrome checks.
+
+### Compatibility
+- BiDi/CDP helpers now raise `vigilant.bidi.BiDiUnavailableError` when the connection API is missing or a known
+  connection error occurs. Pass `on_unavailable="warn"` to explicitly allow a warning and return without validation.
+  Operation errors and timeouts always propagate.
+- The previously broken attribute waiter now requires
+  `wait_for_text_to_be_present_in_element_attribute(selector, attribute_name, text_in_attribute)`.
+
 ## Version 1.7.1
 
 ### Fixes & improvements
